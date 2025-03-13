@@ -1,0 +1,411 @@
+{
+    "theses": [
+        {
+            "thesis_id": "1",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "A QUEUING THEORY ANALYSIS IMPROVEMENT MEASURE FOR OUTPATIENT DEPARTMENT PROCESS",
+            "authors": "Arduo, Jonathan R.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "2",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "A STUDY ON THE EFFICIENCY OF WAVELET PITCH ESTIMATION ALGORITHM",
+            "authors": "Romero, Nichole John T.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "3",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "AN ALGORITHM ANALYSIS FOR OPTIMIZED SEARCH IN LOCATION INTELLIGENT SYSTEM",
+            "authors": "Sunga, Pushyaida Aira C.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "4",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "AN ANALYSIS OF ASYNCTASK THREAD POOLING IN A MOBILE INTEGRATED ENVIRONMENT",
+            "authors": "Teves, Romel M.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "5",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "An Analysis of Dijkstra's Algorithm in a Navigation App for Visually Impaired Person",
+            "authors": "Marayan, Hazel S.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "6",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "AN ANALYSIS OF K-MEANS ALGORITHM FOR FILE TRANSFER IN A WIRELESS ENVIRONMENT",
+            "authors": "Aguero, Al John T.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "7",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "AN ANALYSIS OF LINEAR CONGRUENTIAL GENERATOR FOR PSEUDO RANDOM GENERATION OF QUESTIONNAIRES OF THE ALZH AID APP",
+            "authors": "Nilo, Kyle Harley L.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "8",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "COMPARATIVE ANALYSIS OF MYSQL AND FIREBASE IN A MOBILE APPLICATION",
+            "authors": "Velasquez, John Darnel D.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "9",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "NAIVE FORECASTING ALGORITHM ANALYSIS FOR STUDENT GRADE PREDICTION",
+            "authors": "Panti, Enrique Jimmar C.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "10",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "QUEUEING THEORY ANALYSIS AS AN IMPROVEMENT MEASURE FOR ORDERING PROCESSES",
+            "authors": "Villaver, Ray Vincent Phillip D.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "11",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "SCHEDULE OPTIMIZATION OF EDUCATOR'S ACTIVITIES THROUGH EVOLUTIONARY PROGRAMMING",
+            "authors": "Labrador, Aldwin B.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "12",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE EFFICIENCY OF CONVOLUTIONAL NEURAL NETWORKS FOR LEAF PATTERN RECOGNITION",
+            "authors": "Bigcal, Richard N.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "13",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE EFFICIENCY OF DELTA TIME RENDER UPDATE IN AN ISOMETRIC MOBILE AND DESKTOP-BASED GAME APPLICATION",
+            "authors": "Galvan, Rosalie P.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "14",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE EFFICIENCY OF HUB-BASED LABELING ALGORITHM FOR AN EMERGENCY RESPONSE MOBILE APPLICATION",
+            "authors": "Bacani, Sarah Joy J.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "15",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE EFFICIENCY OF IMPLEMENTING A* ALGORITHM FOR ENEMY AI PATHFINDING IN A VIRTUAL REALITY GAME",
+            "authors": "Dulay, Kennyjay O.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "16",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE EFFICIENCY OF REAL-TIME CODE MERGING ALGORITHM FOR DISTRIBUTED PROGRAMMING",
+            "authors": "Taligatos, Kim Justine M.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "17",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF GEOCALCULATOR: GEOMETRY AUTOMATIC CALCULATOR MOBILE APPLICATION",
+            "authors": "Manalo, Jemuel P.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "18",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF PHASES.IO: A PROJECT MANAGEMENT TOOL WITH RESOURCE CONTROL REPOSITORY",
+            "authors": "Mojares, Ely Nell Jireh L. Jr.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "19",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF POT (Plant On Track): AN ARDUINO-BASED PLANT GROWTH MONITORING SYSTEM",
+            "authors": "Sanchez, Michelle Joy T.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "20",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF REVEAL: RIO DE JANEIRO VIRTUAL EXPERIENCE AND LEARNING MOBILE APPLICATION",
+            "authors": "Espinosa, Mhervin P.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "21",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF SIGNCON: A SIGN LANGUAGE-TO-SPEECH APPLICATION FOR MUTE PEOPLE",
+            "authors": "Pablo, Jerald Jon-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "22",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF SIRKIT: A BASIC ELECTRICAL WIRING SIMULATOR ON ANDROID",
+            "authors": "Apuya, Jaybert Noli P. II-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "23",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF UMAK KONEK: AN ACADEMIC SOCIAL NETWORKING PLATFORM",
+            "authors": "Pangan, Jenree Robert S.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "24",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "DEVELOPMENT OF VAST: VIRTUAL APPLICATION FOR SOLAR SYSTEM TOUR",
+            "authors": "Gamboa, John Nichol C.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "25",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "MULTIPLE INTELLIGENCES ASSESSMENT APPLICATION",
+            "authors": "De Leon, Richard V.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "26",
+            "published_date": "2018",
+            "course": "BSCS-AD",
+            "title": "THE DEVELOPMENT OF WEBEE: AN INTERACTIVE ANDROID LEARNING APPLICATION OF HTML LANGUAGE FOR KIDS",
+            "authors": "Retales, Eugene J.-et al.",
+            "abstract": "",
+            "keywords": ""
+        },
+        {
+            "thesis_id": "27",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "DEVELOPMENT OF FACILITIES AND EQUIPMENT MANAGEMENT SYSTEM FOR BARANGAY SANTOL",
+            "authors": "ABUNDO, PRECIOUS APPLE-DINI AY, JONALYN S.-TUSING, LAWRENCE JOHN P.",
+            "abstract": "The capstone project titled \\\"Development of Facilities and Equipment Management System for Barangay Santol\\\" seeks to revolutionize asset management by addressing the urgent need for an efficient tracking and management system for barangay assets, encompassing buildings, equipment, and vehicles. The primary goal is to design and implement a robust, user-friendly system that empowers barangay officials to monitor assets, schedule maintenance, plan replacements, and optimize resource utilization with precision and ease. Through a thorough analysis, the project identifies existing challenges in the current asset management practices, aiming to not only resolve these issues but also proactively anticipate and mitigate potential risks associated with asset mismanagement, loss, or inefficiencies. Emphasizing user convenience, the system is designed to be intuitive and accessible, ensuring that it meets the practical needs of barangay officials. Integral to the system\\'s architecture are stringent access control mechanisms grounded in the CIA Triad principles (Confidentiality, Integrity, and Availability), guaranteeing robust security to protect sensitive data and information input by users, thus fostering a secure and efficient asset management environment for Barangay Santol.",
+            "keywords": "Asset inventory management, Threat Mitigation Approach, CIA Triad, Facilities and Equipment."
+        },
+        {
+            "thesis_id": "28",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "ASIAN HOSPITAL HEALTH DATA HUB: DEVELOPMENT OF RESEARCH INFORMATION SYSTEM FOR ASIAN HOSPITAL",
+            "authors": "BUENO, REVIN R.-GENERAO, JONAS G.-MEJILLANO, BEA BIANCA R.",
+            "abstract": "The Hospital Research Information System is a web-based software application tailored for Asian Hospital aimed at modernizing and enhancing the research process within the institution. The Hospital Research Information System aims to digitize and optimize research workflows within Asian Hospital. By leveraging technology, the hospital aims to overcome challenges associated with manual processes. The research design for developing a research information system for Asian Hospital adopts a descriptive approach to address its research process challenges. The study begins with an introduction outlining the need for Enhanced effectiveness and optimized user satisfaction in the research process. A literature review explores successful implementations and challenges faced by similar systems in research settings providing insights to inform the de development process. The study evaluated the web systems functionality, reliability, usability, and security and the results showed that the web system has excellent performance and usability and is reliable and secure. Results of testing reveal that research is reliably recorded and kept in the database and the website is compatible with a range of devices and browsers assuring easy accessibility and operation. And lastly, the results of the evaluation that the Asian Hospital Health Data Hub has been effective in addressing the demands of Asian Hospital needs.",
+            "keywords": "Hospital Research Information System, Asian Hospital Health Data Hub"
+        },
+        {
+            "thesis_id": "29",
+            "published_date": "2024-04",
+            "course": "BSCS-AD",
+            "title": "CST HUB: A WEB-BASED APPLICATION SYSTEM FOR STYLE FORMATTING ANALYSIS OF UMAK CS THESIS MANUSCRIPT USING COMPOSITE RULE-BASED ALGORITHM",
+            "authors": "MHIKE LAURENCE N. LACONSAY-HENSON S. BUNAYOG-RAPHAEL JORREL H. DOCOT-CHASTINE JOY B. SANQUI-AIA A. VALLES",
+            "abstract": "This study focuses on developing a system for style formatting analysis of UMak CS Thesis Manuscripts using Composite Rule-Based Algorithm by utilizing Python Libraries such as PyMuPDF, and Tesseract OCR. The system consists of calculating bounding boxes to check the formatting of CS thesis papers, providing a valuable tool for students and professors to efficiently review and reduce formatting errors. The method involves calculating PDF paper size, margins, spacings and defining fonts. Using Tesseract OCR and PyMuPDF, the system extracts text details, detects margins, and calculates text spacings. The model detects the errors by highlighting them with OpenCV specifically fonts, margins, and spacing. Despite difficulties in manual data extraction and time-consuming margin and spacing detection, the developed system proves useful in improving UMak CS Thesis Manuscript formatting, resulting with an overall accuracy rate of 90.66% across various formatting components specifically: margin, spacings, and font-related, with a potential for future refinements. Furthermore, the system evaluation reached an overall rating of 3.55, indicating a general acceptance among Computer Science (CS) students and professors.",
+            "keywords": "Style Formatting Analysis, Formatting Errors, Composite Rule-based Algorithm, UMak CS Thesis Manuscripts, Text Extraction, Data extraction."
+        },
+        {
+            "thesis_id": "30",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "ENHANCING BUSINESS CONTINUITY THROUGH VIRTUALIZATION: UTILIZING CLOUD STORAGE AND SYNC FOR DISASTER RECOVERY",
+            "authors": "JOVERES, MICHELLE M.-MALINAO, FLORENCE B.-TAN, CHARLES VINCENT D.",
+            "abstract": "This research synthesizes a network infrastructure design and configuration plan for Obanana Corp, integrating proactive security protocols and industry best practices. By meticulously addressing specific objectives, including the design of local and wide area networks, implementation of AWS services, and integration of disaster recovery measures, the study aims to enhance organizational resilience and operational efficiency. Proactive measures such as firewall security applications and access management protocols ensure robust network security across multiple floors of the PMI Tower. Rigorous testing and validation procedures validate the reliability and performance of the implemented infrastructure, paving the way for a smooth transition and minimal disruption to operations. By adopting these recommendations, Obana Corp can navigate future technological advancements effectively while safeguarding the integrity and security of its IT infrastructure. Overall, putting these steps into practice will greatly improve Obanana Corp\\'s technology setup, ensuring strong security, better day-to-day operations, and a solid base for handling future tech changes.",
+            "keywords": "Network Infrastructure, AWS Services, Disaster Recovery, Firewall Security Applications, Network Connection, GNS3, Firewall Configuration, Cloud Infra"
+        },
+        {
+            "thesis_id": "31",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "DEVELOPMENT OF A WEB-BASED SEXUALITY EDUCATION PLATFORM FOR ADOLESCENTS",
+            "authors": "BENITEZ, TRIXIE MAY C.-GARCIA, JAHMEL ANDRE C.-GRAMATICA, JULIUS A.",
+            "abstract": "This paper explores the development and evaluation of a web-based platform for sexuality education, aimed at addressing the lack of comprehensive sexuality education materials in educational institutions. Chapter 1 delves into the background of the issue, highlighting the challenges faced in implementing comprehensive sexuality education in the Philippines. Chapter 2 reviews related literature, providing insights from various studies on sexuality education, online resources, and the effectiveness of web-based programs. In Chapter 5, the study\\'s findings, conclusions, and recommendations are presented. The findings indicate that the developed web-based platform performed well in terms of performance efficiency, usability, security, functionality, and maintainability, as evaluated based on ISO 25010 standards. Conclusions drawn from the study emphasize the importance of web-based tools in delivering comprehensive sexuality education and the need for continuous improvement in such platforms. Recommendations include adding a summative test and implementing a certification system to enhance student learning and engagement. Overall, this study contributes to addressing the challenges in providing comprehensive sexuality education through innovative technological solutions.",
+            "keywords": "Web-based Sexuality Education, Sexuality Education Platform, Learning Management System"
+        },
+        {
+            "thesis_id": "32",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "SAGIP ANI: NURTURING AGRICULTURAL PROSPERITY THROUGH AN E-COMMERCE WEB APPLICATION FOR MARKETING AGRICULTURAL PRODUCTS OF PAKISAMA CONFEDERATION",
+            "authors": "MALABANAN, JAMES B.-RANA, JOSIAH CALEB B.-SALUDES, RAZIA PRINCESS JOY T.",
+            "abstract": "This study aims to develop a secure web-based e-commerce system for the Pambansang Kilusan ng mga Samahang Magsasaka confederation (PAKISAMA). The system will allow basic e-commerce transactions between customers and admins like purchasing and selling products while securing user data. Asides from the basic features and functionalities that are present on a typical e-commerce system, there are also security features implemented in this study. Security features that are included in this study is Multi-Factor Authentication and bcrypt. Multi-Factor Authentication is a standard security feature implemented on most systems and software applications, it works by verifying the authenticity of a user by requesting a unique one-time pin or OTP sent to their email account upon registering on the system. On the other hand, Bcrypt\\'s purpose is to secure data stored in the backend of applications by using a cryptographic hash function that turns a user\\'s password into a specific number characters unrecognizable to its original form. The system will be evaluated by using ISO 25010 Product Quality Model Evaluation that assesses a system or software application based on a specific criterion. In this study, the system will be evaluated based on its functionality suitability, interaction capability, reliability, security, and maintainability by three groups. Each group is composed of 10 individuals which are e-commerce platform users, PAKISAMA employees, and IT specialists. The results of t",
+            "keywords": "Agriculture, E-commerce, Web Application, Bcrypt, PAKISAMA Confederation, Bcrypt, Security"
+        },
+        {
+            "thesis_id": "33",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "VMEME: A SECURED CONTEMPORARY ART GALLERY",
+            "authors": "DUAL, MARIA PAMELLA B.-ERGUIZA, JENDAN KREMLIN C.-NIEVA, SABRINA JOY P.",
+            "abstract": "The pandemic and technological advancements have propelled e-commerce and online sales to new heights, requiring businesses to adapt and establish a robust digital presence. MEME, an art gallery, recognized this shift but faced limitations with its outdated website. To address this, the researchers developed the MEME: A Contemporary Art Gallery e-commerce website, tailored to enhance their online reach and meet specific needs. The site encompasses essential e-commerce functionalities such as account management, favorites lists, customization options, and QR code payments, along with advanced features like automatic watermarking and artist\\'s profile management. Ensuring quality and compliance, the website underwent evaluation by art enthusiasts and technology experts guided by the ISO 25010 standards, covering aspects like aesthetics, user experience, security, and accessibility. Employing a descriptive research approach guided by Bhat\\'s framework, data was collected to understand visitor demographics, interests in contemporary art, and security preferences, enabling the gallery to better cater to its audience. The updated website is fully functional across major browsers, ensuring data security with password protection. It significantly improves on the previous version, seamlessly integrating core e-commerce tools like account management, order processing, and anti-plagiarism measures. Robust cybersecurity protocols, including QR code payments, OTP authentication, and anti-",
+            "keywords": "Outdated website, Digital Presence, Ecommerce Website, Automated Watermarking"
+        },
+        {
+            "thesis_id": "34",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "A PROPOSED WEB APPLICATION WITH CLOUD-BASED SECURITY FOR INTEGRATIVE LEARNING CONTENT-BASED SYSTEM FOR SENIOR HIGH SCHOOL STUDENTS OF PRESIDENT DIOSDA",
+            "authors": "ORMIDO, JOHN MARK M.-PAZ, JHET CHRISTIAN V-VIVO, SARAH ERICA D.",
+            "abstract": "This paper helps you understand and know how to develop an online learning management system from the base with the cloud-based security that is reinforced for an additional layer of security for the system which can give peace of mind to the users of the developed project. With the help of the standards that we are utilizing and using nowadays such as AICC, SCORM, xAPI, and cmi5, the developers successfully developed an online learning management system which is for President Diosdado Macapagal High School, this project is addressing the issues of the users of the President Diosdado Macapagal High School like missing requirements, not accurate recordings, missing paper works and many more. Based on the of the results and summary of findings that has the researchers gathered from testing and interviews, the performance efficiency, the PDMHS-LMS gets a weighted average mean of 4.21, compatibility testing also gets a staggering value of 4.2 weighted average mean. In terms of usability, the PDMHS-LMS has the weighted average mean of 4.31, lastly, reliability, reliability gets a 4.20 weighted average mean. In conclusion the proposed technology PDMHS-LMS is effective and reliable as an alternative solution for the existing problems that is in the President Diosdado Macapagal High School, with this and backed-up by the research results from the interview and research that the researchers performed.",
+            "keywords": "Learning management system, cloud security, database, administrator, ISO 25010, modules, dashboard, web-based application, server, database, switches,"
+        },
+        {
+            "thesis_id": "35",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "DEVELOPMENT OF PropertEASE: \\\"A PROPERTY INFORMATION AND SECURITY MANAGEMENT SYSTEM\\\"",
+            "authors": "CHAVEZ, JAN AXCEL V.-GARCIA, MARY JOYCE D.-GARCIA, SHAINE MARIE C.",
+            "abstract": "The real estate industry faces significant challenges in managing their property-related data. Golden Home Realty relies merely on spreadsheets, which are vulnerable and prone to human errors and Data breaches. As a result of manual input can have severe consequences, underscoring the critical importance of information security. In response, the development of PropertEASE: \\\"A property information and security management system\\\" emerges as a robust web application designed to address these complexities, and it ensures information confidentiality and privacy through multi-factor authentication via email verification, data encryption and system with its database for more secure data storage and quick and easy navigation, allowing them to manage their property information and security more efficiently. The development process involves phases such as planning, system design, development, testing, deployment, and ongoing maintenance. By adhering to these phases, PropertEASE aims to create a robust property information and security management system that meets user needs and delivers value. PropertEASE promises to benefit everyone in the real estate game. Golden Home Realty Dev. Inc. can streamline data management, employees can be more productive, and property owners gain peace of mind. Buyers, sellers, and tenants all win with accurate information and a smoother transaction process. By prioritizing trust and reliability, PropertEASE has the potential to revolutionize the real es",
+            "keywords": "Information Security Management System, PropertEASE Management."
+        },
+        {
+            "thesis_id": "36",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "Development of IntelliCam: An Information Management System to Secure Closed-Circuit Television Data",
+            "authors": "ARABACA, WOODY ALLENS G.-BALTAZAR, JOHN AARON R.-CARLOS JR., DELFIN A.",
+            "abstract": "In the contemporary landscape of surveillance technology, Closed-Circuit Television (CCTV) systems are vital for security in various sectors. This study investigates the vulnerabilities and challenges facing CCTV systems in Barangays Pitogo, Pembo, and West Rembo. Through interviews, concerns such as data overwriting, the need for Two-Factor Authentication (2FA), cloud-based storage vulnerabilities, the importance of a digitally auditable trail, and violence prevention measures are uncovered. A proposed solution aims to address these issues with a tailored approach for each barangay, leveraging advanced security measures and contemporary technologies. The study\\'s significance lies in strengthening CCTV system security, providing stakeholders like local government, barangay officials, law enforcement, disaster risk reduction offices, and community residents with increased safety and security. The methodology, incorporating Design Thinking and adhering to ISO 25010 standards, ensures the reliability of assessing system pertormance. This literature review also explores the critical aspects of Design Thinking, its integration into organizational culture, its significance in design education, and theoretical foundations, particularly within the constructivist learning theory framework. Ultimately, this research enhances surveillance infrastructure, benefiting both current and future community stakeholders.",
+            "keywords": "Closed-Circuit Television (CCTV), Two-Factor Authentication. Cloud-based Storage. Violence prevention, Disaster Risk Reduction, Design Thinking, ISO 2"
+        },
+        {
+            "thesis_id": "37",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "RISE AND THRIVE: A WEB-BASED PLATFORM TO PROMOTE KALINGA CULTURE, PRODUCTS, AND SERVICES",
+            "authors": "ARIAGA, MA. ANGELICA C.-COLLADO, MARIECOLLE G.-LINESES, KENNETH O.-PIOJO, RAINLYN",
+            "abstract": "In an age marked by digital connectivity and global trade, the potential of e-commerce to uplift marginalized communities is evident. This study focuses on the development of an e-commerce platform for the indigenous population of Kalinga, Philippines, aimed at promoting their rich cultural heritage and empowering their economic endeavors. The proposed platform, Rise and Thrive, seeks to address the challenges faced by indigenous entrepreneurs, including limited market access and authenticity issues, by providing a dedicated marketplace with features designed to prioritize authenticity, cultural significance, and data security. The significance of this research lies in its pioneering launch of an e-commerce platform tailored specifically for the indigenous population of Kalinga, Philippines. it is for economic empowerment and cultural preservation, the platform offers Kalinga immediate benefits in expanding market reach and connecting with a global audience. By fostering sales growth and positioning Kalinga as a cultural hub, the platform attracts tourism and reinforces the authenticity of indigenous offerings, aside from that it uses technologies such as PHP, HTML, CSS, JavaScript, and MySQL, the platform incorporates measures in security and a payment method to ensure user confidence. Testing and evaluation based on ISO 25010 criteria ensure the platform\\'s functionality and adherence to standards of confidentiality, integrity, non-repudiation, and accountability. The study",
+            "keywords": "Kalinga, E-Commerce, Indigenous Products, Kalinga Culture, Indigenous Website"
+        },
+        {
+            "thesis_id": "38",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "THE DEVELOPMENT OF HIVESTOCK: AN ENHANCED SOLUTION FOR THE INVENTORY MANAGEMENT SYSTEM (IMS) OF NIKKA TRADING",
+            "authors": "BARRAMEDA, GINALYN M.-JIMENEZ, CHARINA M.-LABANIEGO, ANGELINE MARIE D.",
+            "abstract": "The capstone project, \\\"The Development of HiveStock: An Enhanced Solution for the Inventory Management System of Nikka Trading, \\\" is a direct response to the urgent need for a more effective inventory management system. The current system, characterized by manual procedures, obsolete software, and limited visibility, is not only outdated but also poses significant challenges for Nikka Trading. The review of related literature strengthens the proposed study by providing a comprehensive understanding of the current state of knowledge in the field. The study used a descriptive research design to thoroughly examine the project\\'s objectives and scope, which involved a comprehensive analysis of existing research on inventory management systems, technological advancements, and recent industry developments. Moreover, the evaluation results with a high rating indicate that the system could meet the following ISO 25010 standards, such as its usability and compatibility. With an average total rating of 3.89, interpreted as \\\"Acceptable\\\" in terms of functionality, reliability, performance efficiency, usability, compatibility, security, maintainability, and portability. manual inventory management processes and decentralized spreadsheet reliance further compound the issue, introducing errors and hindering operational efficiency. The proposed solution, a modern inventory management system, offers real-time visibility, streamlined supply chain operations, and strategic integration with ",
+            "keywords": "inventory management system, data entry, logistics, technology"
+        },
+        {
+            "thesis_id": "39",
+            "published_date": "2024-05",
+            "course": "BSIT-NS",
+            "title": "AN ENHANCED WIDE AREA NETWORK INFRASTRUCTURE FOR DOST CENTRAL OFFICE: OPTIMIZED FIREWALL AND SYSTEM NETWORK DEPLOYMENT",
+            "authors": "CANONCE, EDRIAN T.-DELICA, CEDRIC JOHN C.-LAGASCA, KAYE M.",
+            "abstract": "The technology has evolved on how information are exchanged and WANs are the backbone of this interconnected world. However, the complexity of WANs also shows on how organizations expose their security challenges. This research focuses on the development, evaluation and testing of the \\\"Enhanced Wide Area Network Infrastructure for DOST Central Office: Optimized Firewall and System Network Development\\\". The goal was to design an improved wide-area network infrastructure with VPN, redundancy, scalability, and quality of service control. Employing a Descriptive Approach research design, the research incorporated Likert scales administered to IT Professionals. Positive evaluations from the participants emphasized the proposed network infrastructure\\'s satisfactory in terms of functionality, reliability, usability and security. Therefore, the researchers concluded based on the results, that the proposed network infrastructure function works as intended: access switch, core switch, router and firewall are integrated well. With a total mean score of 4.1 out of 5, the proposed network infrastructure demonstrates that the functionality, reliability and usability of the network infrastructure was rated satisfactory. Overall, these results and findings indicate that the proposed network infrastructure is functional, reliable, usable and secure, making it an effective solution for transferring encrypted data between two DOST branches, offers redundancy, and has a successful connectivit",
+            "keywords": "enhanced wide area network infrastructure, WAN, access switch, core switch, router, firewall, IPSec tunnel, redundancy, scalability, VPN, DOST"
+        }
+    ],
+    "accounts": [
+        {
+            "user_id": "1",
+            "role": "superadmin",
+            "username": "Renzjan",
+            "name": "Renzjan Moncinilla",
+            "email": "renzjan.moncinilla@umak.edu.ph",
+            "password": "dev01@umak",
+            "personalization": "RJ-"
+        },
+        {
+            "user_id": "2",
+            "role": "superadmin",
+            "username": "Andrei",
+            "name": "Paul Andrei Valencia",
+            "email": "paul.valencia@umak.edu.ph",
+            "password": "dev02@umak",
+            "personalization": ""
+        },
+        {
+            "user_id": "3",
+            "role": "superadmin",
+            "username": "Dhanica",
+            "name": "Ma. Dhanica Ballesteros",
+            "email": "ma.ballesteros@umak.edu.ph",
+            "password": "dev03@umak",
+            "personalization": ""
+        },
+        {
+            "user_id": "4",
+            "role": "superadmin",
+            "username": "Lilxianaze",
+            "name": "Lilxianaze Garcia",
+            "email": "lilxianaze.garcia@umak.edu.ph",
+            "password": "dev04@umak",
+            "personalization": ""
+        },
+        {
+            "user_id": "5",
+            "role": "superadmin",
+            "username": "Superadmin Faculty",
+            "name": "sa@umak",
+            "email": "sa@umak",
+            "password": "sa@umak",
+            "personalization": ""
+        },
+        {
+            "user_id": "6",
+            "role": "admin",
+            "username": "Admin Faculty",
+            "name": "a@umak",
+            "email": "a@umak",
+            "password": "a@umak",
+            "personalization": ""
+        }
+    ]
+}

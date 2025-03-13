@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+@theme {
+    --font-cabin: "Cabin", sans-serif;
+    --color-off-white: #eeeeee;
+    --color-dirty-brown: #585345;
+    --color-dgreen: #01402F;
+    --color-lgreen: #bfcdb2;
+    --color-slgreen: #ebece5;
+    --color-disabled: #757672;
+    --around-shadow-md:  0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+    --animate-downfadeinout: downFadeInOut 3s ease-in-out forwards;
+
+    @keyframes downFadeInOut {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        10% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        90% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
+}
