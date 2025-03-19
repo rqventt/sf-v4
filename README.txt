@@ -2,6 +2,15 @@ Documentation and Shits
 
 npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
 
+
+ACCESS  6LdIQ_UqAAAAAGrV2MqdRUY2QWN7dGJP3G9Q4NET
+FPW     6LfGZvUqAAAAAC3HdNLI0eRuIaaZR-PSpXrD6GRK
+
+https://www.codexworld.com/new-google-recaptcha-with-php/
+
+
+
+
 Put some tasks that hasn't done yet or to be planned here
 
 ========================================================== Heads Up

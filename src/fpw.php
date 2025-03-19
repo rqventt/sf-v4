@@ -1,27 +1,10 @@
 <?php
-    session_start();
-    if (!isset($_COOKIE['id'])) {
-        $_SESSION['log-error'] = 'Error: Unauthorized access! Please login first.';
-        header("Location: access.php");
-        exit();
-    }
+if (isset($_COOKIE['id'])) {
+    header("Location: profile.php");
+    exit();
+}
 
-    require_once('config.php');
-    $stmt = $conn->prepare("SELECT * FROM accounts WHERE email = ?");
-    $stmt->bind_param("s", $_COOKIE['id']);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-
-        $username = $user['username'];
-        $name = $user['name'];
-        $email = $user['email'];
-        $personalization = $user['personalization'];
-        $dp = substr($personalization, 0, 2);
-        setcookie("personalization", $personalization, time() + (86400 * 30), "/");
-    }
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -34,8 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-<body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
+<body class="h-[200vh] bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
     <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
     <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
         <div class="w-full h-35">
@@ -106,98 +90,31 @@
             if (!role || role === "regular") admin?.classList.add("hidden");
         </script>   
     </header>
-    <!-- ================================================== MAIN ================================================== -->
-    <main class="ml-25 m-5 p-15 w-[calc(100vw-135px)] min-h-[calc(100vh-40px)] h-auto rounded-4xl flex flex-col gap-5 bg-[#eeeeee] z-2 text-dirty-brown drag-none">
-        <h1 class="mb-10 text-3xl font-bold text-[#585345] select-none">Profile</h1>
-        <button class="absolute top-20 right-20 flex items-center gap-1 px-5 py-1 rounded-md bg-dirty-brown font-semibold text-sm text-white select-none cursor-pointer hover:opacity-90 active:scale-95 duration-100" onclick="logout()">
-            <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
-            Logout
-        </button>
-        <script>
-            function logout() {
-                document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                document.cookie = "role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.location.href = "index.html";
+    <main>
+        <?php
+            $error = $_SESSION['fpw-error'] ?? '';
+            if ($error) {
+                echo "<div class='absolute top-5 left-1/2 -translate-x-1/2 p-2 w-100 h-10 rounded-xl bg-[#7f1d1d] select-none z-5 animate-downfadeinout'>" . $error . "</div>";
             }
-        </script>
-        <section class="w-full flex justify-between *:p-5 *:rounded-2xl *:bg-[#bfcdb2]">
-            <div class="relative w-150 flex gap-5 shadow-2xl">
-                <img src="resources/dp/<?php echo $dp . ".svg";?>" alt="Profile Picture" class="size-50 border-2 rounded-xl">
-                <ul class="flex flex-col justify-center gap-0.5 *:leading-none">
-                    <li class="text-2xl font-bold"><?php echo strtoupper($name); ?></li>
-                    <li class="text-sm italic opacity-80"><?php echo $email; ?></li>
-                    <li class="mt-1 text-sm opacity-80">(@<?php echo strtolower($username);?>)</li>
-                </ul>
-                <input type="checkbox" name="editprofile" id="editprofile" hidden class="peer">
-                <label for="editprofile" class="absolute top-3 right-3 flex items-center gap-2 text-sm select-none cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#585345"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/></svg>
-                    Edit Profile
-                </label>
-                <label for="editprofile" class="fixed top-0 left-0 w-screen h-screen bg-black opacity-40 hidden peer-checked:block z-4"></label>
-                <div class="fixed top-1/2 left-1/2 -translate-1/2 p-10 w-200 h-150 rounded-4xl bg-[#eeeeee] hidden peer-checked:block z-5">
-                    <div class="relative h-full flex items-center justify-center">
-                        <label for="editprofile" class="absolute top-0 right-0 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></label>
-                        <form class=" *:border-[#585345] *:cursor-pointer">
-                            <div class="grid grid-cols-5 gap-2 items-center justify-center">
-                                <label for="dp1" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp1" class="peer hidden">
-                                    <img src="resources/dp/01.svg" alt="Profile 1"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp2" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp2" class="peer hidden">
-                                    <img src="resources/dp/02.svg" alt="Profile 2"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp3" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp3" class="peer hidden">
-                                    <img src="resources/dp/03.svg" alt="Profile 3"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp4" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp4" class="peer hidden">
-                                    <img src="resources/dp/04.svg" alt="Profile 4"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp5" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp5" class="peer hidden">
-                                    <img src="resources/dp/05.svg" alt="Profile 5"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp6" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp6" class="peer hidden">
-                                    <img src="resources/dp/06.svg" alt="Profile 6"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp7" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp7" class="peer hidden">
-                                    <img src="resources/dp/07.svg" alt="Profile 7"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp8" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp8" class="peer hidden">
-                                    <img src="resources/dp/08.svg" alt="Profile 8"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp9" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp9" class="peer hidden">
-                                    <img src="resources/dp/09.svg" alt="Profile 9"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp10" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp10" class="peer hidden">
-                                    <img src="resources/dp/10.svg" alt="Profile 10"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                            </div>
-                        </form>
-                    </div>
+            session_unset();
+        ?>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] flex-col justify-between animate-fadeIn" id="fpwdiv">
+            <a class="absolute top-5 right-5 cursor-pointer" href="access.php">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            </a>
+            <form action="login.php" method="post" class="h-full flex flex-col justify-between gap-2 select-none" id="fpw-form">
+                <h2 class="py-5 text-center text-3xl font-semibold">Forgot Password?</h2>
+                <span class="relative flex flex-col">
+                    <label for="femail">UMak Email Address:</label>
+                    <input type="text" name="femail" id="femail" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off">
+                    <svg class="absolute left-1.5 bottom-2" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e8eaed"><path d="M170-114q-56.72 0-96.36-40.14Q34-194.27 34-250v-460q0-55.72 39.64-95.86T170-846h620q56.72 0 96.36 40.14T926-710v460q0 55.73-39.64 95.86Q846.72-114 790-114H170Zm310-274 310-200v-122L480-508 170-710v122l310 200Z"/></svg>
+                </span>
+                <div class="py-5 flex flex-col items-center select-none" >
+                    <div id="captcha2" class="g-recaptcha scale-70" data-sitekey="6LfGZvUqAAAAAC3HdNLI0eRuIaaZR-PSpXrD6GRK"></div>
+                    <input type="submit" name="fpw" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95">
                 </div>
-            </div>
-        </section>
-        <section class="">
-            <h1 class="mb-10 text-2xl font-bold text-[#585345] select-none">Bookmarks</h1>
-        </section>    
+            </form>
+        </div>
     </main>
 </body>
 </html>

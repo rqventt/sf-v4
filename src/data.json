@@ -2,6 +2,7 @@
     "theses": [
         {
             "thesis_id": "1",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "A QUEUING THEORY ANALYSIS IMPROVEMENT MEASURE FOR OUTPATIENT DEPARTMENT PROCESS",
@@ -11,6 +12,7 @@
         },
         {
             "thesis_id": "2",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "A STUDY ON THE EFFICIENCY OF WAVELET PITCH ESTIMATION ALGORITHM",
@@ -20,6 +22,7 @@
         },
         {
             "thesis_id": "3",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "AN ALGORITHM ANALYSIS FOR OPTIMIZED SEARCH IN LOCATION INTELLIGENT SYSTEM",
@@ -29,6 +32,7 @@
         },
         {
             "thesis_id": "4",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "AN ANALYSIS OF ASYNCTASK THREAD POOLING IN A MOBILE INTEGRATED ENVIRONMENT",
@@ -38,6 +42,7 @@
         },
         {
             "thesis_id": "5",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "An Analysis of Dijkstra's Algorithm in a Navigation App for Visually Impaired Person",
@@ -47,6 +52,7 @@
         },
         {
             "thesis_id": "6",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "AN ANALYSIS OF K-MEANS ALGORITHM FOR FILE TRANSFER IN A WIRELESS ENVIRONMENT",
@@ -56,6 +62,7 @@
         },
         {
             "thesis_id": "7",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "AN ANALYSIS OF LINEAR CONGRUENTIAL GENERATOR FOR PSEUDO RANDOM GENERATION OF QUESTIONNAIRES OF THE ALZH AID APP",
@@ -65,6 +72,7 @@
         },
         {
             "thesis_id": "8",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "COMPARATIVE ANALYSIS OF MYSQL AND FIREBASE IN A MOBILE APPLICATION",
@@ -74,6 +82,7 @@
         },
         {
             "thesis_id": "9",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "NAIVE FORECASTING ALGORITHM ANALYSIS FOR STUDENT GRADE PREDICTION",
@@ -83,6 +92,7 @@
         },
         {
             "thesis_id": "10",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "QUEUEING THEORY ANALYSIS AS AN IMPROVEMENT MEASURE FOR ORDERING PROCESSES",
@@ -92,6 +102,7 @@
         },
         {
             "thesis_id": "11",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "SCHEDULE OPTIMIZATION OF EDUCATOR'S ACTIVITIES THROUGH EVOLUTIONARY PROGRAMMING",
@@ -101,6 +112,7 @@
         },
         {
             "thesis_id": "12",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE EFFICIENCY OF CONVOLUTIONAL NEURAL NETWORKS FOR LEAF PATTERN RECOGNITION",
@@ -110,6 +122,7 @@
         },
         {
             "thesis_id": "13",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE EFFICIENCY OF DELTA TIME RENDER UPDATE IN AN ISOMETRIC MOBILE AND DESKTOP-BASED GAME APPLICATION",
@@ -119,6 +132,7 @@
         },
         {
             "thesis_id": "14",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE EFFICIENCY OF HUB-BASED LABELING ALGORITHM FOR AN EMERGENCY RESPONSE MOBILE APPLICATION",
@@ -128,6 +142,7 @@
         },
         {
             "thesis_id": "15",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE EFFICIENCY OF IMPLEMENTING A* ALGORITHM FOR ENEMY AI PATHFINDING IN A VIRTUAL REALITY GAME",
@@ -137,6 +152,7 @@
         },
         {
             "thesis_id": "16",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE EFFICIENCY OF REAL-TIME CODE MERGING ALGORITHM FOR DISTRIBUTED PROGRAMMING",
@@ -146,6 +162,7 @@
         },
         {
             "thesis_id": "17",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF GEOCALCULATOR: GEOMETRY AUTOMATIC CALCULATOR MOBILE APPLICATION",
@@ -155,6 +172,7 @@
         },
         {
             "thesis_id": "18",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF PHASES.IO: A PROJECT MANAGEMENT TOOL WITH RESOURCE CONTROL REPOSITORY",
@@ -164,6 +182,7 @@
         },
         {
             "thesis_id": "19",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF POT (Plant On Track): AN ARDUINO-BASED PLANT GROWTH MONITORING SYSTEM",
@@ -173,6 +192,7 @@
         },
         {
             "thesis_id": "20",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF REVEAL: RIO DE JANEIRO VIRTUAL EXPERIENCE AND LEARNING MOBILE APPLICATION",
@@ -182,6 +202,7 @@
         },
         {
             "thesis_id": "21",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF SIGNCON: A SIGN LANGUAGE-TO-SPEECH APPLICATION FOR MUTE PEOPLE",
@@ -191,6 +212,7 @@
         },
         {
             "thesis_id": "22",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF SIRKIT: A BASIC ELECTRICAL WIRING SIMULATOR ON ANDROID",
@@ -200,6 +222,7 @@
         },
         {
             "thesis_id": "23",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF UMAK KONEK: AN ACADEMIC SOCIAL NETWORKING PLATFORM",
@@ -209,6 +232,7 @@
         },
         {
             "thesis_id": "24",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "DEVELOPMENT OF VAST: VIRTUAL APPLICATION FOR SOLAR SYSTEM TOUR",
@@ -218,6 +242,7 @@
         },
         {
             "thesis_id": "25",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "MULTIPLE INTELLIGENCES ASSESSMENT APPLICATION",
@@ -227,6 +252,7 @@
         },
         {
             "thesis_id": "26",
+            "archived": "0",
             "published_date": "2018",
             "course": "BSCS-AD",
             "title": "THE DEVELOPMENT OF WEBEE: AN INTERACTIVE ANDROID LEARNING APPLICATION OF HTML LANGUAGE FOR KIDS",
@@ -236,6 +262,7 @@
         },
         {
             "thesis_id": "27",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "DEVELOPMENT OF FACILITIES AND EQUIPMENT MANAGEMENT SYSTEM FOR BARANGAY SANTOL",
@@ -245,6 +272,7 @@
         },
         {
             "thesis_id": "28",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "ASIAN HOSPITAL HEALTH DATA HUB: DEVELOPMENT OF RESEARCH INFORMATION SYSTEM FOR ASIAN HOSPITAL",
@@ -254,6 +282,7 @@
         },
         {
             "thesis_id": "29",
+            "archived": "0",
             "published_date": "2024-04",
             "course": "BSCS-AD",
             "title": "CST HUB: A WEB-BASED APPLICATION SYSTEM FOR STYLE FORMATTING ANALYSIS OF UMAK CS THESIS MANUSCRIPT USING COMPOSITE RULE-BASED ALGORITHM",
@@ -263,6 +292,7 @@
         },
         {
             "thesis_id": "30",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "ENHANCING BUSINESS CONTINUITY THROUGH VIRTUALIZATION: UTILIZING CLOUD STORAGE AND SYNC FOR DISASTER RECOVERY",
@@ -272,6 +302,7 @@
         },
         {
             "thesis_id": "31",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "DEVELOPMENT OF A WEB-BASED SEXUALITY EDUCATION PLATFORM FOR ADOLESCENTS",
@@ -281,6 +312,7 @@
         },
         {
             "thesis_id": "32",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "SAGIP ANI: NURTURING AGRICULTURAL PROSPERITY THROUGH AN E-COMMERCE WEB APPLICATION FOR MARKETING AGRICULTURAL PRODUCTS OF PAKISAMA CONFEDERATION",
@@ -290,6 +322,7 @@
         },
         {
             "thesis_id": "33",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "VMEME: A SECURED CONTEMPORARY ART GALLERY",
@@ -299,6 +332,7 @@
         },
         {
             "thesis_id": "34",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "A PROPOSED WEB APPLICATION WITH CLOUD-BASED SECURITY FOR INTEGRATIVE LEARNING CONTENT-BASED SYSTEM FOR SENIOR HIGH SCHOOL STUDENTS OF PRESIDENT DIOSDA",
@@ -308,6 +342,7 @@
         },
         {
             "thesis_id": "35",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "DEVELOPMENT OF PropertEASE: \\\"A PROPERTY INFORMATION AND SECURITY MANAGEMENT SYSTEM\\\"",
@@ -317,6 +352,7 @@
         },
         {
             "thesis_id": "36",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "Development of IntelliCam: An Information Management System to Secure Closed-Circuit Television Data",
@@ -326,6 +362,7 @@
         },
         {
             "thesis_id": "37",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "RISE AND THRIVE: A WEB-BASED PLATFORM TO PROMOTE KALINGA CULTURE, PRODUCTS, AND SERVICES",
@@ -335,6 +372,7 @@
         },
         {
             "thesis_id": "38",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "THE DEVELOPMENT OF HIVESTOCK: AN ENHANCED SOLUTION FOR THE INVENTORY MANAGEMENT SYSTEM (IMS) OF NIKKA TRADING",
@@ -344,6 +382,7 @@
         },
         {
             "thesis_id": "39",
+            "archived": "0",
             "published_date": "2024-05",
             "course": "BSIT-NS",
             "title": "AN ENHANCED WIDE AREA NETWORK INFRASTRUCTURE FOR DOST CENTRAL OFFICE: OPTIMIZED FIREWALL AND SYSTEM NETWORK DEPLOYMENT",
@@ -355,6 +394,7 @@
     "accounts": [
         {
             "user_id": "1",
+            "archived": "0",
             "role": "superadmin",
             "username": "Renzjan",
             "name": "Renzjan Moncinilla",
@@ -364,6 +404,7 @@
         },
         {
             "user_id": "2",
+            "archived": "0",
             "role": "superadmin",
             "username": "Andrei",
             "name": "Paul Andrei Valencia",
@@ -373,6 +414,7 @@
         },
         {
             "user_id": "3",
+            "archived": "0",
             "role": "superadmin",
             "username": "Dhanica",
             "name": "Ma. Dhanica Ballesteros",
@@ -382,6 +424,7 @@
         },
         {
             "user_id": "4",
+            "archived": "0",
             "role": "superadmin",
             "username": "Lilxianaze",
             "name": "Lilxianaze Garcia",
@@ -391,6 +434,7 @@
         },
         {
             "user_id": "5",
+            "archived": "0",
             "role": "superadmin",
             "username": "Superadmin Faculty",
             "name": "sa@umak",
@@ -400,12 +444,33 @@
         },
         {
             "user_id": "6",
+            "archived": "0",
             "role": "admin",
             "username": "Admin Faculty",
             "name": "a@umak",
             "email": "a@umak",
             "password": "a@umak",
             "personalization": ""
+        },
+        {
+            "user_id": "7",
+            "archived": "1",
+            "role": "regular",
+            "username": "Renzjan",
+            "name": "Renzjan Moncinilla",
+            "email": "renzjan.m@umak.edu.ph",
+            "password": "$2y$10$FCmmeOiwJGkaI6pw85K4TOG.MiBr3Zu\/bx8yfCryahgdP9iWvbV\/O",
+            "personalization": "01-"
+        },
+        {
+            "user_id": "8",
+            "archived": "0",
+            "role": "regular",
+            "username": "Renzjan",
+            "name": "Renzjan Moncinilla",
+            "email": "renzjan@umak.edu.ph",
+            "password": "BIyL3T0HvevAvw93EaJiLnZ2ek5GeU9BMTNHK3h2YTRCWUtsRlE9PQ==",
+            "personalization": "01-"
         }
     ]
 }

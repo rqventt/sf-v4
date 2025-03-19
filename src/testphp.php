@@ -1,24 +1,35 @@
 <?php
-    if (!isset($_COOKIE['id'])) {
-        header("Location: access.php");
+    if (!isset($_COOKIE['role']) || $_COOKIE['role'] == "regular" ) {
+        header("Location: index.html");
         exit();
     }
 
-    require_once('config.php');
-    $stmt = $conn->prepare("SELECT * FROM accounts WHERE email = ?");
-    $stmt->bind_param("s", $_COOKIE['id']);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    session_start();
+    require_once 'config.php';
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    // Fetch theses data
+    $theses_sql = "SELECT thesis_id, archived, published_date, course, title, authors, abstract, keywords FROM theses";
+    $theses_result = $conn->query($theses_sql);
+    $theses = [];
+    $accounts_sql = "SELECT user_id, archived, role, username, name, email, password, personalization FROM accounts";
+    $accounts_result = $conn->query($accounts_sql);
+    $accounts = [];
 
-        $username = $user['username'];
-        $name = $user['name'];
-        $email = $user['email'];
-        $personalization = $user['personalization'];
-        $dp = substr($personalization, 0, 2);
+    while ($row = $theses_result->fetch_assoc()) {
+        $theses[] = $row;
     }
+
+    while ($row = $accounts_result->fetch_assoc()) {
+        $accounts[] = $row;
+    }
+
+    $data = [
+        "theses" => $theses,
+        "accounts" => $accounts
+    ];
+
+    $json_data = json_encode($data, JSON_PRETTY_PRINT);
+    file_put_contents("data.json", $json_data);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -29,10 +40,10 @@
     <link rel="shortcut icon" href="resources/sf-logo.svg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
 </head>
-<body class="relative bg-[url('resources/lib-bg.jpg')] text-cabin text-white flex">
+<body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
     <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
     <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
         <div class="w-full h-35">
@@ -81,7 +92,7 @@
                 </svg>
                 <p class="text-lg overflow-hidden text-clip">Bookmarks</p>
             </a></li>
-            <li><a href="profile.html" class="flex items-center gap-8 pl-5 py-2 hover:opacity-60 duration-200 ease-linear">                  
+            <li><a href="profile.php" class="flex items-center gap-8 pl-5 py-2 hover:opacity-60 duration-200 ease-linear">                  
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="min-w-8 w-8">
                     <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
                 </svg>  
@@ -97,99 +108,517 @@
                 <p class="text-lg overflow-hidden text-clip">Admin</p>
             </a></li>
         </menu>
+        <script>
+            const admin = document.querySelector('a[href="admin.php"]');
+            const role = document.cookie.match(/role=([^;]+)/)?.[1];
+            if (!role || role === "regular") admin?.classList.add("hidden");
+        </script>   
     </header>
     <!-- ================================================== MAIN ================================================== -->
-    <main class="ml-25 m-5 p-15 w-[calc(100vw-135px)] min-h-[calc(100vh-40px)] h-auto rounded-4xl flex flex-col gap-5 bg-[#eeeeee] z-2 text-dirty-brown drag-none">
-        <h1 class="mb-10 text-3xl font-bold text-[#585345] select-none">Profile</h1>
-        <button class="absolute top-20 right-20 flex items-center gap-1 px-5 py-1 rounded-md bg-dirty-brown font-semibold text-sm text-white select-none cursor-pointer hover:opacity-90 active:scale-95 duration-100" onclick="logout()">
-            <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#ffffff"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
-            Logout
-        </button>
-        <script>
-            function logout() {
-                document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                document.cookie = "role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                window.location.href = "index.html";
-            }
-        </script>
-        <section class="w-full flex justify-between *:p-5 *:rounded-2xl *:bg-[#bfcdb2]">
-            <div class="relative w-150 flex gap-5 shadow-2xl">
-                <img src="resources/dp/<?php echo $dp . ".svg";?>" alt="Profile Picture" class="size-50 border-2 rounded-xl">
-                <ul class="flex flex-col justify-center gap-0.5 *:leading-none">
-                    <li class="text-2xl font-bold"><?php echo strtoupper($name); ?></li>
-                    <li class="text-sm italic opacity-80"><?php echo $email; ?></li>
-                    <li class="mt-1 text-sm opacity-80">(@<?php echo strtolower($username);?>)</li>
-                </ul>
-                <input type="checkbox" name="editprofile" id="editprofile" hidden class="peer">
-                <label for="editprofile" class="absolute top-3 right-3 flex items-center gap-2 text-sm select-none cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#585345"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/></svg>
-                    Edit Profile
-                </label>
-                <label for="editprofile" class="fixed top-0 left-0 w-screen h-screen bg-black opacity-40 hidden peer-checked:block z-4"></label>
-                <div class="fixed top-1/2 left-1/2 -translate-1/2 p-10 w-200 h-150 rounded-4xl bg-[#eeeeee] hidden peer-checked:block z-5">
-                    <div class="relative h-full flex items-center justify-center">
-                        <label for="editprofile" class="absolute top-0 right-0 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></label>
-                        <form class=" *:border-[#585345] *:cursor-pointer">
-                            <div class="grid grid-cols-5 gap-2 items-center justify-center">
-                                <label for="dp1" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp1" class="peer hidden">
-                                    <img src="resources/dp/01.svg" alt="Profile 1"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp2" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp2" class="peer hidden">
-                                    <img src="resources/dp/02.svg" alt="Profile 2"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp3" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp3" class="peer hidden">
-                                    <img src="resources/dp/03.svg" alt="Profile 3"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp4" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp4" class="peer hidden">
-                                    <img src="resources/dp/04.svg" alt="Profile 4"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp5" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp5" class="peer hidden">
-                                    <img src="resources/dp/05.svg" alt="Profile 5"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp6" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp6" class="peer hidden">
-                                    <img src="resources/dp/06.svg" alt="Profile 6"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp7" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp7" class="peer hidden">
-                                    <img src="resources/dp/07.svg" alt="Profile 7"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp8" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp8" class="peer hidden">
-                                    <img src="resources/dp/08.svg" alt="Profile 8"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp9" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp9" class="peer hidden">
-                                    <img src="resources/dp/09.svg" alt="Profile 9"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp10" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp10" class="peer hidden">
-                                    <img src="resources/dp/10.svg" alt="Profile 10"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                            </div>
-                        </form>
+    <main class="ml-25 m-5 p-15 w-[calc(100vw-80px)] min-h-[calc(100vh-40px)] h-auto rounded-4xl bg-off-white z-2 text-black drag-none">
+        <h1 class="mb-3 text-3xl font-bold text-dirty-brown select-none">Admin</h1>
+        <div class="relative">      
+            <input type="radio" name="tb" id="thesestb" checked class="peer/thesestb hidden">
+            <label for="thesestb" class="absolute text-dirty-brown font-bold text-xl opacity-60 peer-checked/thesestb:opacity-100 peer-checked/thesestb:underline peer-checked/thesestb:decoration-3 peer-checked/thesestb:underline-offset-6 duration-300 select-none cursor-pointer">Theses</label>
+            <input type="radio" name="tb" id="userstb" class="peer/userstb hidden">
+            <label for="userstb" class="absolute left-19 text-dirty-brown font-bold text-xl opacity-60 peer-checked/userstb:opacity-100 peer-checked/userstb:underline peer-checked/userstb:decoration-3 peer-checked/userstb:underline-offset-6 duration-300 select-none cursor-pointer <?php echo $_COOKIE["role"] !== "superadmin" ? "hidden" : ""; ?>">Users</label>
+
+            <!-- ================================================== THESES TABLE ================================================== -->
+            <div id="all-ths" class="relative w-full h-160 hidden flex-col gap-2.5 peer-checked/thesestb:flex">
+                <div class="mt-10 flex justify-end gap-5">
+                    <div class="flex items-center text-sm italic opacity-80 select-none">
+                        <p>Showing table with <span id="tpage-info"></span> results</p>
+                    </div>
+                    <div class="px-2.5 py-1.5 rounded-md flex items-center gap-3 bg-lgreen">
+                        <input type="text" placeholder="Search" id="tsearch-box" class="px-4 w-50 rounded-md bg-slgreen text-sm outline-none">
+                        <select name="" id="tsearch-category" class="px-4 w-30 rounded-md bg-slgreen text-sm select-none outline-none">
+                            <option value="" class="text-disabled">Search by</option>
+                            <option value="title">Title</option>
+                            <option value="published_date">Date</option>
+                            <option value="course">Course</option>
+                            <option value="authors">Authors</option>
+                            <option value="keywords">Keywords</option>
+                        </select>
+                        <span class="flex items-center gap-2">
+                            <input type="checkbox" id="tarchive-mode" class="peer">
+                            <label for="tarchive-mode" class="text-sm opacity-80 peer-checked:opacity-100 select-none cursor-pointer">Archived Data</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <input type="checkbox" id="tcreator" hidden class="peer">
+                    <label for="tcreator" class="px-5 py-0.5 rounded-md bg-lgreen text-sm hover:opacity-80 active:scale-95 duration-50 cursor-pointer select-none">Append Data</label>
+                    <label for="tcreator" class="fixed top-0 left-0 w-screen h-screen bg-black opacity-40 hidden peer-checked:block z-4"></label>
+                    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 w-120 h-auto bg-slgreen rounded-md shadow-2xl shadow-black/70 hidden peer-checked:block z-5">
+                        <div class="relative w-full h-full flex flex-col justify-between">
+                            <label for="tcreator" class="absolute -top-5 -right-5 p-2 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                            </label>
+                            <span class="py-5 flex flex-col gap-2 select-none">
+                                <h1 class="text-2xl font-bold text-center select-none">Append Thesis Data</h1>
+                                <p class="text-justify text-sm leading-none"><b>Note:</b> Use a <b>comma (,)</b> for keywords and a <b>plus (+)</b> for authors to separate data properly.</p>
+                            </span>
+                            
+                            <form action="cms.php" method="post" class="w-full flex flex-col *:relative *:flex *:flex-col gap-2.5">
+                                <span>
+                                    <input type="text" name="title" id="title" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="title" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Title</label>
+                                </span>
+                                <span>
+                                    <input type="text" name="authors" id="authors" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="authors" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Author/s</label>
+                                </span>
+                                <span>
+                                    <textarea type="text" name="abstract" id="abstract" required class="peer px-2 py-1.5 w-full h-42 resize-none rounded-md border-2 border-dirty-brown text-sm outline-none"></textarea>
+                                    <label for="abstract" class="absolute top-2.5 left-2 px-1 py-0.5 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Abstract</label>
+                                </span>
+                                <span>
+                                    <input type="text" name="keywords" id="keywords" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="keywords" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Keywords</label>
+                                </span>
+                                <span class="flex-row! gap-2 *:relative *:w-1/2 *:flex *:flex-col">
+                                    <span>
+                                        <select name="course" id="course" required class="px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none text-[#464644] valid:text-black">
+                                            <option value="" disabled selected>Select here</option>
+                                            <option class="text-black" value="BSIT-NS">BSIT-NS</option>
+                                            <option class="text-black" value="BSCS-AD">BSCS-AD</option>
+                                        </select>
+                                        <label for="course" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none -translate-y-4 text-xs">Course</label>
+                                    </span>
+                                    <span>
+                                        <input type="month" name="pdate" id="pdate" required class="px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none text-[#464644] valid:text-black">
+                                        <label for="pdate" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none -translate-y-4 text-xs">Published Date</label>
+                                    </span>
+                                </span>
+                                <span class="py-5 flex flex-col items-center justify-center gap-1 select-none">
+                                <i class="text-sm">You are currently assigning new data with an ID of <b id="new-ths-id"></b>.</i>
+                                <button type="submit" name="new-thesis" class="px-8 py-1 rounded-md bg-lgreen text-sm font-semibold hover:opacity-90 active:scale-95 duration-100 cursor-pointer">Submit</button>
+                            </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <table class="w-full border-separate border-spacing-1 table-fixed text-sm">
+                    <thead>
+                        <tr class="*:rounded-md *:bg-lgreen *:py-0.5 *:whitespace-nowrap *:select-none">
+                            <th class="w-[14%]">Modify</th>
+                            <th class="w-[8%]">ID</th>
+                            <th class="w-[8%]">Pub Date</th>
+                            <th class="w-[10%]">Course</th>
+                            <th class="w-[20%]">Title</th>
+                            <th class="w-[10%]">Authors</th>
+                            <th class="w-[20%]">Abstract</th>
+                            <th class="w-[10%]">Keywords</th>
+                        </tr>
+                    </thead>
+                    <tbody id="theses-container">
+                        <tr class="*:rounded-md *:bg-slgreen *:py-0.5 *:overflow-hidden *:text-ellipsis *:whitespace-nowrap">
+                            <td class="flex items-center justify-center gap-2 select-none">
+                                <input type="checkbox" class="px-1" id="001">
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                            <td class="tid">01</td>
+                            <td class="pdate">2025-05</td>
+                            <td class="course">BSCS-AD</td>
+                            <td class="title">TitleTitleTitleTitleTitleTitlTitleTitleTitleTitleTitleTitleeeeeeeeeeeeeeee</td>
+                            <td class="authors">Authors</td>
+                            <td class="abstract">Abstract</td>
+                            <td class="keywords">Keywords</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="absolute bottom-0 w-full *:w-min-30">
+                    <div class="relative w-full flex justify-between gap-2">
+                        <div class="flex items-center *:flex *:items-center *:gap-2 text-sm select-none">
+                            <span>
+                                <input type="checkbox" id="ta-select-all">
+                                <label for="ta-select-all">Select All</label>
+                            </span>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 px-5 py-1 rounded-md flex items-center justify-center gap-2 bg-lgreen">
+                            <button onclick="firstTSet()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#464644"><path d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"/></svg></button>
+                            <button onclick="previousTSet()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#464644"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg></button>
+                            <select id="tsets-per-page" class="px-4 w-auto rounded-md bg-slgreen text-sm select-none outline-none">
+                                <option value="1">1</option>
+                            </select>
+                            <button onclick="nextTSet()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#464644"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg></button>
+                            <button onclick="lastTSet()"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#464644"><path d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z"/></svg></button>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="tretrieve" onclick="toggleThesesBulkAction('retrieve')" class="px-5 py-0.5 w-30 rounded-md bg-lgreen text-center text-sm disabled:opacity-70 disabled:cursor-not-allowed enabled:hover:opacity-80 enabled:active:scale-95 duration-50 enabled:cursor-pointer hidden">Retrieve</button>
+                            <button id="tarchive" onclick="toggleThesesBulkAction('archive')" class="px-5 py-0.5 w-30 rounded-md bg-lgreen text-center text-sm disabled:opacity-70 disabled:cursor-not-allowed enabled:hover:opacity-80 enabled:active:scale-95 duration-50 enabled:cursor-pointer">Archive</button>
+                            <button id="tdelete" onclick="toggleThesesBulkAction('delete')" class="px-5 py-0.5 w-30 rounded-md bg-lred text-center text-sm disabled:opacity-70 disabled:cursor-not-allowed enabled:hover:opacity-80 enabled:active:scale-95 duration-50 enabled:cursor-pointer hidden">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="">
-            <h1 class="mb-10 text-2xl font-bold text-[#585345] select-none">Bookmarks</h1>
-        </section>
+
+            <!-- ================================================== USERS TABLE ================================================== -->
+            <div id="all-usr" class="w-full min-h-[60vh] h-auto hidden flex-col gap-2.5 peer-checked/userstb:flex">
+                <div class="mt-10 flex justify-end gap-5">
+                    <div class="flex items-center text-sm italic opacity-80 select-none">
+                        <p>Showing table with <span id="upage-info">1 out of 1</span> of results</p>
+                    </div>
+                    <div class="px-2.5 py-1.5 rounded-md flex items-center gap-3 bg-lgreen">
+                        <select name="" id="usets-per-page" class="px-4 w-auto rounded-md bg-slgreen text-sm select-none outline-none">
+                            <option value="1">1</option>
+                        </select>
+                        <hr class="h-9/10 border-[#585345] border-1">
+                        <input type="text" placeholder="Search" id="usearch-box" class="px-4 w-50 rounded-md bg-slgreen text-sm outline-none">
+                        <select name="" id="usearch-category" class="px-4 w-30 rounded-md bg-slgreen text-sm select-none outline-none">
+                            <option value="" class="text-disabled">Search by</option>
+                            <option value="role">Role</option>
+                            <option value="username">Username</option>
+                            <option value="name">Name</option>
+                            <option value="email">Email</option>
+                        </select>
+                        <span class="flex items-center gap-2">
+                            <input type="checkbox" id="uarchive-mode" class="peer">
+                            <label for="uarchive-mode" class="text-sm opacity-80 peer-checked:opacity-100 select-none cursor-pointer">Archived Data</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <input type="checkbox" id="ucreator" hidden class="peer">
+                    <label for="ucreator" class="px-5 py-0.5 rounded-md bg-lgreen text-sm hover:opacity-80 active:scale-95 duration-50 cursor-pointer select-none">Append Data</label>
+                    <label for="ucreator" class="fixed top-0 left-0 w-screen h-screen bg-black opacity-40 hidden peer-checked:block z-4"></label>
+                    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 w-120 h-150 bg-slgreen rounded-md shadow-2xl shadow-black/70 hidden peer-checked:block z-5">
+                        <div class="relative w-full h-full flex flex-col justify-between">
+                            <label for="ucreator" class="absolute top-0 right-0 p-2 cursor-pointer">
+                                X
+                            </label>
+                            <h1 class="py-5 text-2xl font-extrabold text-center select-none">Append User Data</h1>
+                            <form action="" class="w-full flex flex-col *:relative *:flex *:flex-col gap-2.5">
+                                <span>
+                                    <input type="text" name="username" id="username" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="username" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Username</label>
+                                </span>
+                                <span>
+                                    <input type="text" name="name" id="name" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="name" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Name</label>
+                                </span>
+                                <span>
+                                    <input type="email" name="email" id="email" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="email" class="absolute top-2.5 left-2 px-1 py-0.5 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">UMak Email Address</label>
+                                </span>
+                                <span>
+                                    <input type="text" name="password" id="password" required class="peer px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none">
+                                    <label for="password" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none opacity-70 peer-valid:-translate-y-4 peer-valid:text-xs peer-valid:opacity-100 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:opacity-100 duration-200">Password</label>
+                                </span>
+                                <span>
+                                    <select name="access" id="access" required class="px-2 py-1.5 w-full rounded-md border-2 border-dirty-brown text-sm outline-none text-[#464644] valid:text-black">
+                                        <option value="" disabled selected>Select here</option>
+                                        <option class="text-black" value="regular">Regular</option>
+                                        <option class="text-black" value="admin">Admin</option>
+                                        <option class="text-black" value="superadmin">Super Admin</option>
+                                    </select>
+                                    <label for="course" class="absolute top-2.5 left-2 px-1 bg-slgreen leading-none select-none -translate-y-4 text-xs">Role</label>
+                                </span>
+                                <span class="text-sm select-none">
+                                    <p>The user can:</p>
+                                    <ul class="pl-5 list-disc">
+                                        <li class="text-[#464644] line-through" id="ua1">View Library</li>
+                                        <li class="text-[#464644] line-through" id="ua2">View Databases</li>
+                                        <li class="text-[#464644] line-through" id="ua3">Edit "Theses" Table</li>
+                                        <li class="text-[#464644] line-through" id="ua4">Edit "Users" Table</li>
+                                    </ul>
+                                </span>
+                            </form>
+                            <span class="py-5 flex items-center justify-center">
+                                <button class="px-8 py-1 rounded-md bg-lgreen text-sm font-semibold hover:opacity-90 active:scale-95 duration-100 cursor-pointer">Submit</button>
+                            </span>
+                            <script>
+                                document.getElementById('access').addEventListener('change', function() {
+                                    const roles = {
+                                        regular: ["ua2", "ua3", "ua4"],
+                                        admin: ["ua4"],
+                                        superadmin: []
+                                    };
+                                    document.querySelectorAll("#ua1, #ua2, #ua3, #ua4").forEach(el => el.className = '');
+                                    roles[this.value].forEach(id => document.getElementById(id).className = "text-[#464644] line-through");
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <table class="w-full border-separate border-spacing-1 table-fixed text-sm">
+                    <thead>
+                        <tr class="*:rounded-md *:bg-lgreen *:py-0.5 *:whitespace-nowrap *:select-none">
+                            <th class="w-[14%]">Modify</th>
+                            <th class="w-[8%]">ID</th>
+                            <th class="w-[8%]">Role</th>
+                            <th class="w-[15%]">Username</th>
+                            <th class="w-[15%]">Name</th>
+                            <th class="w-[15%]">Email</th>
+                            <th class="w-[15%]">Password</th>
+                            <th class="w-[10%]">Personalization</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-container">
+                        <tr class="*:rounded-md *:bg-slgreen *:py-0.5 *:overflow-hidden *:text-ellipsis *:whitespace-nowrap">
+                            <td class="flex items-center justify-center gap-2 select-none">
+                                <input type="checkbox" class="px-1" id="001">
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z"/>
+                                    </svg>
+                                </button>
+                                <button type="button" class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#0f0f0f">
+                                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                            <td id="">ID</td>
+                            <td id="">superadmin</td>
+                            <td id="">Renzjan</td>
+                            <td id="">Renzjan Moncinilla</td>
+                            <td id="">renzjan.moncinilla@umak.edu.ph</td>
+                            <td id="">hashedpassword</td>
+                            <td id="">01AECD</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="flex justify-between gap-2">
+                    <div class="flex items-center gap-5 *:flex *:items-center *:gap-2 text-sm select-none">
+                        <span>
+                            <input type="checkbox" id="ua-select-all">
+                            <label for="ua-select-all">Select All</label>
+                        </span>
+                    </div>
+                    <div>
+                        <button id="uaction" onclick="toggleThesesBulkAction()" class="px-5 py-0.5 rounded-md bg-lgreen text-sm hover:opacity-80 active:scale-95 duration-50 cursor-pointer">Archive</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ================================================== BULK ACTION BOX ================================================== -->
+        <div id="bulk-action-box" class="absolute top-0 left-0 hidden">
+            <div onclick="toggleThesesBulkAction()" class="w-screen h-screen bg-black/40 z-15"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-10 w-120 h-70 rounded-2xl bg-off-white shadow-2xl text-black z-16 select-none">
+                <form action="cms.php" method="post" class="relative w-full h-full flex flex-col items-center justify-between">
+                    <span class="flex flex-col items-center *:leading-none">
+                        <p id="ba-msg"></p>
+                        <p id="ba-warning-msg" class="text-xs text-red-500"></p>
+                    </span>
+                    <span id="ba-selection" class="p-2.5 w-full h-30 rounded-xl flex items-center justify-center bg-zinc-200 border-1 border-zinc-300 select-text overflow-hidden text-ellipsis text-xs text-center">
+                    </span>
+                    <input type="text" name="ba-data" id="ba-data" hidden>
+                    <span class="flex items-center gap-5">
+                        <button type="button" onclick="toggleThesesBulkAction()" class="px-5 py-0.5 rounded-md bg-lred text-sm hover:opacity-80 active:scale-95 duration-50 cursor-pointer">Cancel</button>
+                        <button type="submit" id="t-bulk" name="t-bulk" value="" class="px-5 py-0.5 rounded-md bg-lgreen text-sm hover:opacity-80 active:scale-95 duration-50 cursor-pointer">Proceed</button>
+                    </span>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================================================== ALERTS ================================================== -->
+        <?php
+            $success = $_SESSION['success'] ?? '';
+            $error = $_SESSION['error'] ?? '';
+            
+            if ($success) {
+                echo "<div class='absolute top-10 left-1/2 -translate-x-1/2 p-2 px-5 w-100 rounded-xl border-2 bg-[#d9ead3] border-[#b6d7a8] text-[#274e13] select-none leading-none z-5 animate-downfadeinout delay-200'>" . $success . "</div>";  
+            } else if ($error) {
+                echo "<div class='absolute top-10 left-1/2 -translate-x-1/2 p-2 px-5 w-100 rounded-xl border-2 bg-[#e6b8af] border-[#dd7e6b] text-[#5b0f00] select-none leading-none z-5 animate-downfadeinout delay-200'>" . $error . "</div>";
+            } 
+
+            session_unset();
+        ?>
     </main>
+    <script>
+        let data = { theses: [] }, thesesPerPage = 15, selectedSet = 0, searchQuery = "", searchCategory = "", selectedThesis = [];
+        const tarchiveMode = document.getElementById("tarchive-mode"), taSelectAll = document.getElementById("ta-select-all"), tsetsSelect = document.getElementById("tsets-per-page"),
+        tarchive = document.getElementById("tarchive"), tretrieve = document.getElementById("tretrieve"), tdelete = document.getElementById("tdelete");
+
+        fetch('data.json').then(res => res.json()).then(json => (data = json, displaySets())).catch(console.error);
+
+        [tarchiveMode, taSelectAll, tsetsSelect].forEach(el => el.addEventListener("change", e => {
+            if (e.target === tarchiveMode) (selectedThesis = [], taSelectAll.checked = false, selectedSet = 0);
+            if (e.target === tsetsSelect) selectedSet = +e.target.value - 1;
+            if (e.target === taSelectAll) selectedThesis = taSelectAll.checked ? data.theses.filter(t => t.archived == tarchiveMode.checked).map(t => t.thesis_id) : [];
+            displaySets();
+        }));
+
+        document.getElementById("theses-container").addEventListener("change", e => {
+            if (!e.target.classList.contains("tcb")) return;
+            selectedThesis = e.target.checked ? [...new Set([...selectedThesis, e.target.id])] : selectedThesis.filter(id => id != e.target.id);
+            taSelectAll.checked = document.querySelectorAll('.tcb:checked').length === document.querySelectorAll('.tcb').length;
+            tarchive.disabled = selectedThesis.length === 0;
+            tretrieve.disabled = selectedThesis.length === 0;
+            tdelete.disabled = selectedThesis.length === 0;
+
+            console.log(selectedThesis);
+        });
+
+        function displaySets() {
+            const tcontainer = document.getElementById("theses-container"), tpageInfo = document.getElementById("tpage-info");
+            let filteredData = data.theses.filter(t => t.archived == tarchiveMode.checked && (!searchQuery || t[searchCategory]?.toLowerCase().includes(searchQuery.toLowerCase())));
+            let totalSets = Math.ceil(filteredData.length / thesesPerPage);
+            selectedSet = Math.max(0, Math.min(selectedSet, totalSets - 1));
+            tsetsSelect.innerHTML = [...Array(totalSets)].map((_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("");
+            tsetsSelect.value = selectedSet + 1;
+            tarchive.classList.toggle('hidden', tarchiveMode.checked);
+            tretrieve.classList.toggle('hidden', !tarchiveMode.checked);
+            tdelete.classList.toggle('hidden', !tarchiveMode.checked);
+            tarchive.disabled = selectedThesis.length === 0;
+            tretrieve.disabled = selectedThesis.length === 0;
+            tdelete.disabled = selectedThesis.length === 0;
+
+            const lastThesisId = data.theses.length ? Math.max(...data.theses.map(t => t.thesis_id)) : 0;
+            document.getElementById("new-ths-id").innerHTML = (lastThesisId + 1).toString().padStart(4, '0');
+
+            tcontainer.innerHTML = filteredData.length ? filteredData.slice(selectedSet * thesesPerPage, (selectedSet + 1) * thesesPerPage).map(t => `
+                <tr class="*:rounded-md *:bg-slgreen *:py-0.5 *:overflow-hidden *:text-ellipsis *:whitespace-nowrap">
+                    <td class="flex items-center justify-center select-none overflow-visible!">
+                        <input type="checkbox" class="tcb mx-1 cursor-pointer" id="${t.thesis_id}" ${selectedThesis.includes(t.thesis_id) ? "checked" : ""}>
+                        <span class="relative">
+                            <button class="peer px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">✏️</button>
+                            <p class="hidden peer-hover:block absolute -top-4  w-full rounded-sm bg-zinc-700 text-off-white text-xs text-center select-none">Edit</p>
+                        </span>
+                        ${tarchiveMode.checked? 
+                        '<span class="relative">' +
+                            '<button class="peer px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">↩️</button>' +
+                            '<p class="hidden peer-hover:block absolute -top-4 left-1/2 -translate-x-1/2 px-1 rounded-sm bg-zinc-700 text-off-white text-xs text-center select-none">Retrieve</p>' +
+                        '</span> <span class="relative">' +
+                            '<button class="peer px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">🗑️</button>' +
+                            '<p class="hidden peer-hover:block absolute -top-4 left-1/2 -translate-x-1/2 px-1 rounded-sm bg-zinc-700 text-off-white text-xs text-center select-none">Delete</p>' +
+                        '</span>' : 
+                        '<span class="relative">' +
+                            '<button class="peer px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">📥</button>' +
+                            '<p class="hidden peer-hover:block absolute -top-4 left-1/2 -translate-x-1/2 px-1 rounded-sm bg-zinc-700 text-off-white text-xs text-center select-none">Archive</p>' +
+                        '</span>'}
+                    </td>
+                    <td class="text-center">${t.thesis_id.toString().padStart(4, '0')}</td>
+                    <td class="text-center">${t.published_date}</td>
+                    <td class="text-center">${t.course}</td>
+                    <td>${upperWords(t.title)}</td>
+                    <td>${t.authors}</td>
+                    <td>${t.abstract || "..."}</td>
+                    <td>${t.keywords || "..."}</td>
+                </tr>`).join("") : "<tr><td colspan='8' class='text-center'>No results found.</td></tr>";
+
+            tpageInfo.textContent = totalSets === 0 ? `no${tarchiveMode.checked ? " archived" : ""}` : `${selectedSet + 1} of ${totalSets + (tarchiveMode.checked ? " archived" : "")} set/s of`;
+        }
+
+        ["first", "previous", "next", "last"].forEach((fn, i) => window[fn + "TSet"] = () => {
+            selectedSet = [0, Math.max(0, selectedSet - 1), Math.min(selectedSet + 1, tsetsSelect.options.length - 1), tsetsSelect.options.length - 1][i];
+            displaySets();
+        });
+
+        const upperWords = str => str.replace(/\b\w/g, c => c.toUpperCase());
+
+        function toggleThesesBulkAction(action) {        
+            const box = document.getElementById("bulk-action-box");
+            box.classList.toggle('hidden');
+
+            document.getElementById("ba-msg").textContent = upperWords(action) + " selected theses?";
+            document.getElementById("ba-warning-msg").textContent = action == "delete" ? "This action cannot be reverted!" : "";
+            document.getElementById("ba-selection").textContent = selectedThesis.map(id => id.toString().padStart(4, '0')).join(', ');
+            document.getElementById("ba-data").value = selectedThesis.join('-');
+            document.getElementById("t-bulk").value = action;
+        }
+
+
+
+        /*
+        let udata = { accounts: [] }, uitemsPerPage = 15, uselectedSet = 0, usearchQuery = "", usearchCategory = "";
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(json => { udata = json; udisplaySets(); })
+            .catch(error => console.error("Error loading user data:", error));
+
+        let selectedUsers = [];
+        const uaSelectAll = document.getElementById("ua-select-all");
+        uaSelectAll.addEventListener("change", () => {
+            selectedUsers = uaSelectAll.checked ? data.accounts.map(item => item.user_id) : [];
+            console.log(selectedUsers);
+            displaySets();
+        });
+
+        function udisplaySets() {
+            const ucontainer = document.getElementById("users-container"),
+                upageInfo = document.getElementById("upage-info"),
+                uarchiveMode = document.getElementById("uarchive-mode")?.checked,
+                usetsSelect = document.getElementById("usets-per-page");
+            
+            ucontainer.innerHTML = "";
+            let ufilteredData = udata.accounts
+                ?.filter(item => (uarchiveMode ? item.archived == 1 : item.archived == 0))
+                ?.filter(item => !usearchQuery || item[usearchCategory]?.toLowerCase().includes(usearchQuery.toLowerCase())) || [];
+            
+            let utotalSets = Math.ceil(ufilteredData.length / uitemsPerPage);
+            uselectedSet = Math.max(0, Math.min(uselectedSet, utotalSets - 1));
+            let uprevValue = usetsSelect.value;
+            usetsSelect.innerHTML = [...Array(utotalSets)].map((_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("");
+            usetsSelect.value = uprevValue > 0 && uprevValue <= utotalSets ? uprevValue : "1";
+
+            let udataSlice = ufilteredData.slice(uselectedSet * uitemsPerPage, (uselectedSet + 1) * uitemsPerPage);
+            ucontainer.innerHTML = udataSlice.length ? udataSlice.map(user => `
+                <tr class="*:rounded-md *:bg-slgreen *:py-0.5 *:overflow-hidden *:text-ellipsis *:whitespace-nowrap">
+                    <td class="flex items-center justify-center gap-2 select-none">
+                        <input type="checkbox" class="ucb px-1" id="user-${user.user_id}">
+                        <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">✏️</button>
+                        <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">📥</button>
+                        <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">🗑️</button>
+                    </td>
+                    <td class="text-center">${user.user_id.toString().padStart(4, '0')}</td>
+                    <td class="text-center">${user.role}</td>
+                    <td>${user.username}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.password}</td>
+                    <td>${user.personalization || "..."}</td>
+                </tr>`).join("") : "<tr><td colspan='8' class='text-center'>No users found.</td></tr>";
+
+            if (upageInfo) upageInfo.textContent = `${uselectedSet + 1} out of ${utotalSets} set/s`;
+
+            document.querySelectorAll('.ucb').forEach(cb => cb.addEventListener('change', e => {
+                taSelectAll.checked = document.querySelectorAll('.ucb:checked').length === document.querySelectorAll('.ucb').length;
+                selectedUsers = e.target.checked 
+                    ? [...new Set([...selectedUsers, e.target.id])] 
+                    : selectedUsers.filter(id => id != e.target.id);
+                selectedUsers.sort((a, b) => a - b);
+                console.log(selectedUsers);
+            }));
+        }
+            */
+
+        window.onload = () => {
+            // Theses Data
+            document.getElementById("tsets-per-page")?.addEventListener("change", e => { selectedSet = e.target.value - 1; displaySets(); });
+            document.getElementById("tsearch-box")?.addEventListener("input", e => { searchQuery = e.target.value; selectedSet = 0; displaySets(); });
+            document.getElementById("tsearch-category")?.addEventListener("change", e => { searchCategory = e.target.value; selectedSet = 0; displaySets(); });
+            document.getElementById("tarchive-mode")?.addEventListener("change", e => {selectedSet = 0; displaySets(); });
+
+            // Users Data
+            document.getElementById("usets-per-page")?.addEventListener("change", e => { uselectedSet = e.target.value - 1; udisplaySets(); });
+            document.getElementById("usearch-box")?.addEventListener("input", e => { usearchQuery = e.target.value; uselectedSet = 0; udisplaySets(); });
+            document.getElementById("usearch-category")?.addEventListener("change", e => { usearchCategory = e.target.value; uselectedSet = 0; udisplaySets(); });
+            document.getElementById("uarchive-mode")?.addEventListener("change", e => {uselectedSet = 0; udisplaySets(); });
+        };
+
+</script>
 </body>
 </html>

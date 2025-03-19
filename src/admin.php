@@ -8,10 +8,10 @@
     require_once 'config.php';
 
     // Fetch theses data
-    $theses_sql = "SELECT thesis_id, published_date, course, title, authors, abstract, keywords FROM theses";
+    $theses_sql = "SELECT thesis_id, archived, published_date, course, title, authors, abstract, keywords FROM theses";
     $theses_result = $conn->query($theses_sql);
     $theses = [];
-    $accounts_sql = "SELECT user_id, role, username, name, email, password, personalization FROM accounts";
+    $accounts_sql = "SELECT user_id, archived, role, username, name, email, password, personalization FROM accounts";
     $accounts_result = $conn->query($accounts_sql);
     $accounts = [];
 
@@ -32,16 +32,19 @@
     file_put_contents("data.json", $json_data);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scholar Finds</title>
     <link rel="shortcut icon" href="resources/sf-logo.svg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
 </head>
-<body class="flex bg-[url('resources/lib-bg.jpg')] h-screen text-cabin text-white">
-    <div class="absolute inset-0 bg-black/50 h-screen z-0"></div>
+<body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
+    <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
     <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
         <div class="w-full h-35">
             <span class="inline-block whitespace-nowrap transition-all duration-500 ease-out overflow-hidden"></span>
@@ -49,7 +52,7 @@
                 <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
                 <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
             </span>
-            <a href=""><h1 class="m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 ">Scholar Finds</h1></a>
+            <a href="index.html" class="outline-none"><h1 class="m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
         </div>
         <nav>
             <ul class="flex flex-col gap-2">
@@ -105,6 +108,11 @@
                 <p class="text-lg overflow-hidden text-clip">Admin</p>
             </a></li>
         </menu>
+        <script>
+            const admin = document.querySelector('a[href="admin.php"]');
+            const role = document.cookie.match(/role=([^;]+)/)?.[1];
+            if (!role || role === "regular") admin?.classList.add("hidden");
+        </script>   
     </header>
     <!-- ================================================== MAIN ================================================== -->
     <main class="ml-25 m-5 p-15 w-[calc(100vw-80px)] min-h-[calc(100vh-40px)] h-auto rounded-4xl bg-off-white z-2 text-black drag-none">
@@ -147,7 +155,7 @@
                     <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-10 w-120 h-150 bg-slgreen rounded-md shadow-2xl shadow-black/70 hidden peer-checked:block z-5">
                         <div class="relative w-full h-full flex flex-col justify-between">
                             <label for="tcreator" class="absolute top-0 right-0 p-2 cursor-pointer">
-                                X
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                             </label>
                             <h1 class="py-5 text-2xl font-extrabold text-center select-none">Append Thesis Data</h1>
                             <form action="" class="w-full flex flex-col *:relative *:flex *:flex-col gap-2.5">
@@ -383,6 +391,17 @@
                             -->
     </main>
     <script>
+        function upperWords(str) {
+            return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function formatDate(dateString) {
+            let parts = dateString.split("-");
+            let year = parts[0];
+            let month = parts[1] ? new Date(`${year}-${parts[1]}-01`).toLocaleString('en-US', { month: 'long' }) : "";
+            return month ? `${month} ${year}` : year;
+        }
+
         let data = { theses: [] }, thesesPerPage = 15, selectedSet = 0, searchQuery = "", searchCategory = "";
 
         fetch('data.json')
@@ -410,13 +429,13 @@
                         <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">📥</button>
                         <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">🗑️</button>
                     </td>
-                    <td class="tid">${item.thesis_id}</td>
-                    <td class="pdate">${item.published_date}</td>
-                    <td class="course">${item.course}</td>
-                    <td class="title">${item.title}</td>
-                    <td class="authors">${item.authors}</td>
-                    <td class="abstract">${item.abstract || "N/A"}</td>
-                    <td class="keywords">${item.keywords || "N/A"}</td>
+                    <td class="text-center">${item.thesis_id.toString().padStart(4, '0')}</td>
+                    <td class="text-center">${item.published_date}</td>
+                    <td class="text-center">${item.course}</td>
+                    <td>${item.title}</td>
+                    <td>${item.authors}</td>
+                    <td>${item.abstract}</td>
+                    <td>${item.keywords}</td>
                 </tr>`).join("") : "<tr><td colspan='8' class='text-center'>No results found.</td></tr>";
 
                 if (tpageInfo) tpageInfo.textContent = `${selectedSet + 1} of ${totalSets} set\/s`;
@@ -453,8 +472,8 @@
                         <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">📥</button>
                         <button class="px-1 opacity-65 hover:opacity-100 active:scale-95 cursor-pointer">🗑️</button>
                     </td>
-                    <td>${user.user_id}</td>
-                    <td>${user.role}</td>
+                    <td class="text-center">${user.user_id.toString().padStart(4, '0')}</td>
+                    <td class="text-center">${user.role}</td>
                     <td>${user.username}</td>
                     <td>${user.name}</td>
                     <td>${user.email}</td>
@@ -476,10 +495,6 @@
             document.getElementById("usearch-box")?.addEventListener("input", e => { usearchQuery = e.target.value; uselectedSet = 0; udisplaySets(); });
             document.getElementById("usearch-category")?.addEventListener("change", e => { usearchCategory = e.target.value; uselectedSet = 0; udisplaySets(); });
         };
-
-        const admin = document.querySelector('a[href="admin.php"]');
-        const role = document.cookie.match(/role=([^;]+)/)?.[1];
-        if (!role || role === "regular") admin?.classList.add("hidden");
     </script>
 </body>
 </html>
