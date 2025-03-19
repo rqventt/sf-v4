@@ -1,7 +1,64 @@
 <?php
-
 require_once 'config.php';
 session_start();
+
+if (isset($_POST['t-act'])) {
+    $action = $_POST['t-act'];
+    $a_data = $_POST['a-data'];
+    $padded_a_data = str_pad($a_data, 4, '0', STR_PAD_LEFT);
+
+    // ARCHIVE
+    if ($action === 'archive') {
+        $query = "UPDATE theses SET archived = 1 WHERE thesis_id = ?";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $a_data);
+
+        $stmt->execute();
+        $stmt->close();
+
+        $_SESSION['success'] = 'Successfully archived thesis with an ID of ' . $padded_a_data . '.';
+    }
+
+    // RETRIEVE
+    if ($action === 'retrieve') {
+        $query = "UPDATE theses SET archived = 0 WHERE thesis_id = ?";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $a_data);
+
+        $stmt->execute();
+        $stmt->close();
+
+        $_SESSION['success'] = 'Successfully retrieved thesis with an ID of ' . $padded_a_data . '.';
+    }
+
+    // DELETE
+    if ($action === 'delete') {
+        $transferQuery = "INSERT INTO theses_backup SELECT * FROM theses WHERE thesis_id = ?";
+        $stmt = $conn->prepare($transferQuery);
+        $stmt->bind_param('i', $a_data);
+        $stmt->execute();
+        $stmt->close();
+
+        $deleteQuery = "DELETE FROM theses WHERE thesis_id = ?";
+        $stmt = $conn->prepare($deleteQuery);
+        $stmt->bind_param('i', $a_data);
+        $stmt->execute();
+        $stmt->close();
+
+        $result = $conn->query("SELECT IFNULL(MAX(thesis_id), 0) + 1 AS next_id FROM theses");
+        $row = $result->fetch_assoc();
+        $nextAutoIncrement = $row['next_id'];
+
+        $conn->query("ALTER TABLE theses AUTO_INCREMENT = $nextAutoIncrement");
+
+        $_SESSION['success'] = 'Successfully deleted thesis with an ID of ' . $padded_a_data . '.';
+    }
+
+    header("Location: testphp.php");
+    exit();
+}
 
 if (isset($_POST['t-bulk'])) {
     $action = $_POST['t-bulk'];
@@ -40,26 +97,22 @@ if (isset($_POST['t-bulk'])) {
     if ($action === 'delete') {
         $placeholders = implode(',', array_fill(0, count($ba_data), '?'));
 
-        // Step 1: Transfer data to theses_backup
         $transferQuery = "INSERT INTO theses_backup SELECT * FROM theses WHERE thesis_id IN ($placeholders)";
         $stmt = $conn->prepare($transferQuery);
         $stmt->bind_param(str_repeat('i', count($ba_data)), ...$ba_data);
         $stmt->execute();
         $stmt->close();
     
-        // Step 2: Delete from theses
         $deleteQuery = "DELETE FROM theses WHERE thesis_id IN ($placeholders)";
         $stmt = $conn->prepare($deleteQuery);
         $stmt->bind_param(str_repeat('i', count($ba_data)), ...$ba_data);
         $stmt->execute();
         $stmt->close();
     
-        // Step 3: Get the next AUTO_INCREMENT value
         $result = $conn->query("SELECT IFNULL(MAX(thesis_id), 0) + 1 AS next_id FROM theses");
         $row = $result->fetch_assoc();
         $nextAutoIncrement = $row['next_id'];
-    
-        // Step 4: Reset AUTO_INCREMENT
+
         $conn->query("ALTER TABLE theses AUTO_INCREMENT = $nextAutoIncrement");
     }    
 
