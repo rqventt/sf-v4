@@ -20,20 +20,18 @@ function activeForm($form, $activeForm) {
     <link rel="shortcut icon" href="resources/sf-logo.svg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
-    <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
-    <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
+<div class="fixed inset-0 bg-black/50 h-full z-0 max-tablet:hidden"></div>
+    <!-- DESKTOP SIDE NAVIGATIONS -->
+    <header class="group fixed top-0 left-0 pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex max-tablet:hidden flex-col justify-between bg-ash/85 backdrop-blur-md shadow-[var(--around-shadow-md)] select-none text-off-white z-10">
         <div class="w-full h-35">
-            <span class="inline-block whitespace-nowrap transition-all duration-500 ease-out overflow-hidden"></span>
-                <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block">
-                <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
-                <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
-            </span>
-            <a href="index.html" class="outline-none"><h1 class="m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
+            <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block">
+            <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
+            <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
+            <a href="index.html" class="outline-none"><h1 class=" m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
         </div>
         <nav>
             <ul class="flex flex-col gap-2">
@@ -93,8 +91,52 @@ function activeForm($form, $activeForm) {
             const admin = document.querySelector('a[href="admin.php"]');
             const role = document.cookie.match(/role=([^;]+)/)?.[1];
             if (!role || role === "regular") admin?.classList.add("hidden");
-        </script>   
+        </script> 
     </header>
+    <!-- MOBILE NAVIGATION-->
+    <nav class="tablet:hidden z-50">
+        <div onclick="toggleNav()" class="fixed right-0 top-50 pl-2.5 rounded-l-full bg-dirty-brown">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#eeeeee" class="p-1.5 size-8.5 cursor-pointer">
+                <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div onclick="toggleNav()" id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black/50 hidden"></div>
+        <div id="mob-nav" class="fixed top-0 right-0 pt-20 overflow-clip w-70 h-screen bg-off-white hidden flex-col animate-header font-semibold text-dirty-brown **:select-none">
+            <div onclick="toggleNav()" class="absolute top-5 right-5">
+                <svg class="size-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#585345"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            </div>
+            <h1 class="px-7.5 text-2xl font-bold">Scholar Finds</h1>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="index.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" /></svg>Home</a>
+                <a href="about.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z" /> </svg>About</a>
+                <a href="contact.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" /> </svg>Contact</a>
+            </div>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="library.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z" /> </svg>Library</a>
+                <a href="bookmarks.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z" clip-rule="evenodd" /> </svg>Bookmarks</a>
+                <a href="profile.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clip-rule="evenodd" /> </svg>Profile</a>
+               
+            </div>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="" class="block w-full text-red-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd" /> <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd" /> </svg>Logout</a>
+                <a href="admin.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4-7-1.79-7-4 3.134-4 7-4Zm5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178c.396.37.842.688 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37ZM3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822c-.396.37-.842.688-1.306.953-1.532.875-3.548 1.369-5.694 1.369s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179Z" clip-rule="evenodd" /> </svg>Admin</a>
+            </div>
+        </div>
+        <!-- SCRIPT -->
+        <script>
+            const mobNav = document.getElementById("mob-nav");
+            const overlay = document.getElementById("overlay");
+    
+            function toggleNav() {
+                mobNav.classList.toggle("hidden");
+                mobNav.classList.toggle("flex");
+                overlay.classList.toggle("hidden");
+            }
+        </script> 
+    </nav>
     <!-- ================================================== MAIN ================================================== -->
     <main>
         <?php
@@ -106,14 +148,14 @@ function activeForm($form, $activeForm) {
             session_unset();
         ?>
         <!-- LOGIN -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] animate-fadeIn <?php echo activeForm('loginform', $activeForm); ?>" id="log-content">
-            <form action="login.php" method="post" class="h-full flex flex-col justify-between gap-2 select-none" id="login-form" onsubmit="return validateCaptcha(event, widgetId1)">
+        <div class="max-sm:scale-75 max-lg:scale-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] animate-fadeIn <?php echo activeForm('loginform', $activeForm); ?>" id="log-content">
+            <form action="login.php" method="post" class="h-full flex flex-col justify-between gap-2 select-none" id="login-form">
                 <h2 class="py-5 text-center text-3xl font-semibold">Welcome back!</h2>
                 <div class="flex flex-col gap-2">
                     <span class="relative flex flex-col">
-                        <label for="lemail">UMak Email Address:</label>
+                        <label for="lemail">Email Address:</label>
                         <svg class="absolute left-1.5 bottom-2" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e8eaed"><path d="M170-114q-56.72 0-96.36-40.14Q34-194.27 34-250v-460q0-55.72 39.64-95.86T170-846h620q56.72 0 96.36 40.14T926-710v460q0 55.73-39.64 95.86Q846.72-114 790-114H170Zm310-274 310-200v-122L480-508 170-710v122l310 200Z"/></svg>
-                        <input type="email" name="lemail" id="lemail" placeholder="juan.delacruz@umak.edu.ph" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off"> 
+                        <input type="email" name="lemail" id="lemail" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off"> 
                     </span>
                     <span class="relative flex flex-col">
                         <label for="lpass">Password:</label>
@@ -130,18 +172,18 @@ function activeForm($form, $activeForm) {
                         <a href="fpw.php" class="absolute right-0 -bottom-6 text-sm italic cursor-pointer select-none hover:opacity-80">Forgot your password?</a>
                     </span>
                 </div>
-                <div class="py-5 flex flex-col items-center gap-1 select-none">
-                    <input type="submit" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95" name="login">
-                    <i class="text-xs">Don't have an acccount? <a onclick="changelogmode()" class="text-[#32882a] font-bold cursor-pointer hover:opacity-80">Register now!</a></i>
+                <div class="pb-5 flex flex-col items-center gap-1 select-none">
+                    <input type="submit" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95" name="login" value="Login">
+                    <i class="text-sm">Don't have an acccount? <a onclick="changelogmode()" class="text-[#32882a] font-bold cursor-pointer hover:opacity-80">Register now!</a></i>
                 </div>
             </form>
         </div>
 
         <!-- REGISTRATION -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] animate-fadeIn <?php echo activeForm('regisform', $activeForm); ?>" id="reg-content">
-            <form action="login.php" method="post" class="w-full flex flex-col justify-between gap-2 select-none" id="regis-form">
+        <div class="max-sm:scale-75 max-lg:scale-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-150 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] animate-fadeIn <?php echo activeForm('regisform', $activeForm); ?>" id="reg-content">
+            <form action="login.php" method="post" class="w-full h-full flex flex-col justify-between gap-2 select-none" id="regis-form">
                 <h2 class="py-5 text-center text-3xl font-semibold select-none">Registration</h2>
-                <div>
+                <div class="flex flex-col gap-2">
                     <span class="relative flex flex-col">
                         <label for="rname">Name:</label>
                         <svg class="absolute left-1.5 bottom-2" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e8eaed"><path d="M172-34q-57.12 0-96.56-39.44Q36-112.88 36-170v-419q0-57.13 39.44-96.56Q114.88-725 172-725h144v-88q0-51.13 31.44-82.56Q378.88-927 430-927h100q51.13 0 82.56 31.44Q644-864.13 644-813v88h144q57.13 0 96.56 39.44Q924-646.13 924-589v419q0 57.12-39.44 96.56Q845.13-34 788-34H172Zm63-187h248v-20q0-18.48-10.5-34.24Q462-291 445-298q-21-10-42.5-14.5T359-317q-22 0-43 4.5T274-298q-17.58 7.14-28.29 22.59T235-241v20Zm326-60h164v-66H561v66Zm-201.5-66q26.5 0 44.5-18.5t18-45q0-26.5-18.04-44.5T359-473q-26 0-44.5 18.04T296-410q0 26 18.5 44.5t45 18.5ZM561-403h164v-67H561v67ZM442-640h76v-161h-76v161Z"/></svg>
@@ -153,9 +195,9 @@ function activeForm($form, $activeForm) {
                         <input type="text" name="rusername" id="rusername" placeholder="Juan" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off">
                     </span class="relative flex flex-col">
                     <span class="relative flex flex-col">
-                        <label for="remail">UMak Email Address:</label>
+                        <label for="remail">Email Address:</label>
                         <svg class="absolute left-1.5 bottom-2" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e8eaed"><path d="M170-114q-56.72 0-96.36-40.14Q34-194.27 34-250v-460q0-55.72 39.64-95.86T170-846h620q56.72 0 96.36 40.14T926-710v460q0 55.73-39.64 95.86Q846.72-114 790-114H170Zm310-274 310-200v-122L480-508 170-710v122l310 200Z"/></svg>
-                        <input type="email" name="remail" id="remail" placeholder="juan.delacruz@umak.edu.ph" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off">
+                        <input type="email" name="remail" id="remail" required class="pl-7 py-1 bg-black/30 border-1 border-gray-500 rounded-lg text-gray-300/80 font-sans outline-none" autocomplete="off">
                     </span>
                     <span class="relative flex flex-col">
                         <label for="rpassword">Password:</label>
@@ -181,17 +223,11 @@ function activeForm($form, $activeForm) {
                 </div>
                 <div class="pb-5 flex flex-col items-center gap-1 select-none">
                     <div class="g-recaptcha scale-70" id="captcha1" data-sitekey="6LdIQ_UqAAAAAGrV2MqdRUY2QWN7dGJP3G9Q4NET"></div>
-                    <input type="submit" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95" name="register">
-                    <i class="text-xs">Already have an account? <a onclick="changelogmode()" class="text-[#32882a] font-bold cursor-pointer hover:opacity-80">Login here!</a></i>
+                    <input type="submit" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95" name="register" value="Register">
+                    <i class="text-sm">Already have an account? <a onclick="changelogmode()" class="text-[#32882a] font-bold cursor-pointer hover:opacity-80">Login here!</a></i>
                 </div>
             </form>
-            
         </div>
-        <!--
-        <div class="absolute top-5 left-1/2 -translate-x-1/2 p-2 w-100 h-10 rounded-xl bg-[#7f1d1d] select-none z-5 ">
-            Error occured
-        </div>
-        -->
         <script>
             const loginform = document.getElementById('log-content');
             const regisform = document.getElementById('reg-content');

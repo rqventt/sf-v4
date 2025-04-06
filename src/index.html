@@ -11,7 +11,7 @@
     <link href="./output.css" rel="stylesheet">
 </head>
 <body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
-    <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
+    <div class="fixed inset-0 bg-linear-to-b from-black/40 to-black/90 h-screen z-0"></div>
     <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
         <div class="w-full h-35">
             <span class="inline-block whitespace-nowrap transition-all duration-500 ease-out overflow-hidden"></span>
@@ -87,10 +87,14 @@
             <h2 class="text-2xl font-semibold">College of Computing and Information Sciences'</h2>
             <h1 class="text-6xl font-bold text-nowrap">eThesis Repository Library</h1>
             <br>
-            <button class="px-5 py-1 rounded-md flex items-center gap-2.5 bg-green-900 hover:opacity-90 active:scale-95">
+            <button class="px-5 py-1 rounded-md flex items-center gap-2.5 bg-green-900 hover:opacity-80 active:scale-95">
                 <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>
-                <a href="access.php">Get Started</a>
+                <a href="about.html">Explore More</a>
             </button>
+        </section>
+        <section class="absolute right-15 bottom-15 z-1 w-320 animate-blur-up">
+            <p class="text-3xl text-right leading-12 font-semibold">Explore, Access, Thrive – Your Gateway to Academic Excellence</p>
+            <p class="text-xl text-right font-extralight leading-none">The eThesis Repository Library is an online platform designed for students of the College of Computing and Information Sciences to effortlessly access, search, and explore a vast collection of academic theses. Whether you're conducting research, reviewing past projects, or seeking inspiration, this repository offers seamless access to archived theses, helping you stay informed, enhance your knowledge, and achieve your academic goals.</p>
         </section>
     </main>
 </body>

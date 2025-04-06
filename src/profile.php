@@ -32,19 +32,18 @@
     <link rel="shortcut icon" href="resources/sf-logo.svg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
 </head>
 <body class="bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
-    <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
-    <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
+    <div class="fixed inset-0 bg-black/50 h-full z-0 max-tablet:hidden"></div>
+    <!-- DESKTOP SIDE NAVIGATIONS -->
+    <header class="group fixed top-0 left-0 pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex max-tablet:hidden flex-col justify-between bg-ash/85 backdrop-blur-md shadow-[var(--around-shadow-md)] select-none text-off-white z-10">
         <div class="w-full h-35">
-            <span class="inline-block whitespace-nowrap transition-all duration-500 ease-out overflow-hidden"></span>
-                <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block">
-                <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
-                <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
-            </span>
-            <a href="index.html" class="outline-none"><h1 class="m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
+            <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block">
+            <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
+            <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
+            <a href="index.html" class="outline-none"><h1 class=" m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
         </div>
         <nav>
             <ul class="flex flex-col gap-2">
@@ -104,8 +103,52 @@
             const admin = document.querySelector('a[href="admin.php"]');
             const role = document.cookie.match(/role=([^;]+)/)?.[1];
             if (!role || role === "regular") admin?.classList.add("hidden");
-        </script>   
+        </script> 
     </header>
+    <!-- MOBILE NAVIGATION-->
+    <nav class="tablet:hidden z-50">
+        <div onclick="toggleNav()" class="fixed right-0 top-50 pl-2.5 rounded-l-full bg-dirty-brown">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#eeeeee" class="p-1.5 size-8.5 cursor-pointer">
+                <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div onclick="toggleNav()" id="overlay" class="fixed top-0 left-0 w-screen h-screen bg-black/50 hidden"></div>
+        <div id="mob-nav" class="fixed top-0 right-0 pt-20 overflow-clip w-70 h-screen bg-off-white hidden flex-col animate-header font-semibold text-dirty-brown **:select-none">
+            <div onclick="toggleNav()" class="absolute top-5 right-5">
+                <svg class="size-9" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#585345"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            </div>
+            <h1 class="px-7.5 text-2xl font-bold">Scholar Finds</h1>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="index.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z" clip-rule="evenodd" /></svg>Home</a>
+                <a href="about.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z" /> </svg>About</a>
+                <a href="contact.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z" clip-rule="evenodd" /> </svg>Contact</a>
+            </div>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="library.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z" /> </svg>Library</a>
+                <a href="bookmarks.html" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 0 0 1.075.676L10 15.082l5.925 2.844A.75.75 0 0 0 17 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0 0 10 2Z" clip-rule="evenodd" /> </svg>Bookmarks</a>
+                <a href="profile.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clip-rule="evenodd" /> </svg>Profile</a>
+               
+            </div>
+            <hr class="my-5 w-full opacity-30 *:active:bg-neutral-300">
+            <div class="w-full *:px-7.5 *:py-1 *:flex *:items-center *:gap-2 *:active:bg-neutral-300">
+                <a href="" class="block w-full text-red-700"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd" /> <path fill-rule="evenodd" d="M6 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H6.75A.75.75 0 0 1 6 10Z" clip-rule="evenodd" /> </svg>Logout</a>
+                <a href="admin.php" class="block w-full"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5"> <path fill-rule="evenodd" d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4-7-1.79-7-4 3.134-4 7-4Zm5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178c.396.37.842.688 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37ZM3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822c-.396.37-.842.688-1.306.953-1.532.875-3.548 1.369-5.694 1.369s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179Z" clip-rule="evenodd" /> </svg>Admin</a>
+            </div>
+        </div>
+        <!-- SCRIPT -->
+        <script>
+            const mobNav = document.getElementById("mob-nav");
+            const overlay = document.getElementById("overlay");
+    
+            function toggleNav() {
+                mobNav.classList.toggle("hidden");
+                mobNav.classList.toggle("flex");
+                overlay.classList.toggle("hidden");
+            }
+        </script> 
+    </nav>
     <!-- ================================================== MAIN ================================================== -->
     <main class="ml-25 m-5 p-15 w-[calc(100vw-135px)] min-h-[calc(100vh-40px)] h-auto rounded-4xl flex flex-col gap-5 bg-[#eeeeee] z-2 text-dirty-brown drag-none">
         <h1 class="mb-10 text-3xl font-bold text-[#585345] select-none">Profile</h1>
@@ -120,84 +163,32 @@
                 window.location.href = "index.html";
             }
         </script>
-        <section class="w-full flex justify-between *:p-5 *:rounded-2xl *:bg-[#bfcdb2]">
-            <div class="relative w-150 flex gap-5 shadow-2xl">
-                <img src="resources/dp/<?php echo $dp . ".svg";?>" alt="Profile Picture" class="size-50 border-2 rounded-xl">
-                <ul class="flex flex-col justify-center gap-0.5 *:leading-none">
-                    <li class="text-2xl font-bold"><?php echo strtoupper($name); ?></li>
-                    <li class="text-sm italic opacity-80"><?php echo $email; ?></li>
-                    <li class="mt-1 text-sm opacity-80">(@<?php echo strtolower($username);?>)</li>
-                </ul>
-                <input type="checkbox" name="editprofile" id="editprofile" hidden class="peer">
-                <label for="editprofile" class="absolute top-3 right-3 flex items-center gap-2 text-sm select-none cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#585345"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h357l-80 80H200v560h560v-278l80-80v358q0 33-23.5 56.5T760-120H200Zm280-360ZM360-360v-170l367-367q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L530-360H360Zm481-424-56-56 56 56ZM440-440h56l232-232-28-28-29-28-231 231v57Zm260-260-29-28 29 28 28 28-28-28Z"/></svg>
-                    Edit Profile
-                </label>
-                <label for="editprofile" class="fixed top-0 left-0 w-screen h-screen bg-black opacity-40 hidden peer-checked:block z-4"></label>
-                <div class="fixed top-1/2 left-1/2 -translate-1/2 p-10 w-200 h-150 rounded-4xl bg-[#eeeeee] hidden peer-checked:block z-5">
-                    <div class="relative h-full flex items-center justify-center">
-                        <label for="editprofile" class="absolute top-0 right-0 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></label>
-                        <form class=" *:border-[#585345] *:cursor-pointer">
-                            <div class="grid grid-cols-5 gap-2 items-center justify-center">
-                                <label for="dp1" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp1" class="peer hidden">
-                                    <img src="resources/dp/01.svg" alt="Profile 1"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp2" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp2" class="peer hidden">
-                                    <img src="resources/dp/02.svg" alt="Profile 2"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp3" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp3" class="peer hidden">
-                                    <img src="resources/dp/03.svg" alt="Profile 3"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp4" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp4" class="peer hidden">
-                                    <img src="resources/dp/04.svg" alt="Profile 4"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp5" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp5" class="peer hidden">
-                                    <img src="resources/dp/05.svg" alt="Profile 5"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp6" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp6" class="peer hidden">
-                                    <img src="resources/dp/06.svg" alt="Profile 6"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp7" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp7" class="peer hidden">
-                                    <img src="resources/dp/07.svg" alt="Profile 7"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp8" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp8" class="peer hidden">
-                                    <img src="resources/dp/08.svg" alt="Profile 8"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp9" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp9" class="peer hidden">
-                                    <img src="resources/dp/09.svg" alt="Profile 9"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                                <label for="dp10" class="cursor-pointer">
-                                    <input type="radio" name="profile" id="dp10" class="peer hidden">
-                                    <img src="resources/dp/10.svg" alt="Profile 10"
-                                        class="size-25 rounded-lg border-1 peer-checked:border-2 peer-checked:border-black">
-                                </label>
-                            </div>
-                        </form>
+        <div class="flex-1 w-full flex">
+            <section class="w-80">
+                <div class="p-5 py-10 w-full h-120 rounded-xl bg-lgreen flex flex-col items-center gap-1">
+                    <div class="relative">
+                        <img src="resources/dp/RJ.svg" alt="" class="size-35 rounded-full border-4 border-dirty-brown">
+                        <button class="absolute top-0 right-0 -translate-x-1/2 translate-y-1/2 cursor-pointer hover:scale-120 active:scale-90 duration-100">
+                            <svg class="p-1 size-6 rounded-full bg-dirty-brown text-off-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M3 21v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM17.6 7.8L19 6.4L17.6 5l-1.4 1.4z"/></svg>
+                        </button>
+                    </div>
+                    
+                    <h1 class="text-xl text-center font-bold"><?php echo $name;?></h1>
+                    <div class="relative mt-10 w-full flex flex-col gap-2 text-center *:py-0.5 *:rounded-md">
+                        <button class="absolute -top-8 right-0 px-5 bg-dirty-brown flex items-center gap-1 text-off-white text-sm cursor-pointer hover:opacity-80 active:scale-90 duration-100">
+                            <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from MingCute Icon by MingCute Design - https://github.com/Richard9394/MingCute/blob/main/LICENSE --><g fill="none" fill-rule="evenodd"><path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="m14.535 12.225l4.242 4.243l-4.243 4.243a1 1 0 0 1-.707.293H11a1 1 0 0 1-1-1v-2.829a1 1 0 0 1 .293-.707zM17 2a2 2 0 0 1 1.995 1.85L19 4v4.02a5 5 0 0 0-4.27 1.192l-.196.185l-5.656 5.657a3 3 0 0 0-.872 1.923l-.007.198v2.829a3 3 0 0 0 .11.804l.06.192H5a2 2 0 0 1-1.995-1.85L3 19V4a2 2 0 0 1 1.85-1.995L5 2zm3.191 8.811a3 3 0 0 1 0 4.243L15.95 10.81a3 3 0 0 1 4.242 0ZM11 6H7a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2"/></g></svg>
+                            Edit
+                        </button>
+                        <p class="bg-slgreen"><?php echo '@' . strtolower($username);?></p>
+                        <p class="bg-slgreen"><?php echo strtolower($email);?></p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="">
-            <h1 class="mb-10 text-2xl font-bold text-[#585345] select-none">Bookmarks</h1>
-        </section>    
+            </section>
+            <section>
+
+            </section>
+
+        </div> 
     </main>
 </body>
 </html>

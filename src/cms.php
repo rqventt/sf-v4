@@ -56,7 +56,7 @@ if (isset($_POST['t-act'])) {
         $_SESSION['success'] = 'Successfully deleted thesis with an ID of ' . $padded_a_data . '.';
     }
 
-    header("Location: testphp.php");
+    header("Location: admin.php");
     exit();
 }
 
@@ -116,7 +116,7 @@ if (isset($_POST['t-bulk'])) {
         $conn->query("ALTER TABLE theses AUTO_INCREMENT = $nextAutoIncrement");
     }    
 
-    header("Location: testphp.php");
+    header("Location: admin.php");
     exit();
 }
 
@@ -136,6 +136,6 @@ if (isset($_POST['new-thesis'])) {
     $stmt->close();
 
     $_SESSION['success'] = 'Successfully added new thesis';
-    header("Location: testphp.php");
+    header("Location: admin.php");
     exit();
 }

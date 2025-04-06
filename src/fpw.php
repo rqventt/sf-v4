@@ -21,16 +21,33 @@ session_start();
 </head>
 <body class="h-[200vh] bg-[url('resources/lib-bg.jpg')] font-nunito text-white flex">
     <div class="fixed inset-0 bg-black/50 h-screen z-0"></div>
-    <header class="group fixed pt-10 pb-10 w-20 hover:w-60 duration-500 ease-out h-screen flex flex-col justify-between bg-[#060d0d99] backdrop-blur-md shadow-[var(--around-shadow-md)] select-none z-10">
-        <div class="w-full h-35">
-            <span class="inline-block whitespace-nowrap transition-all duration-500 ease-out overflow-hidden"></span>
-                <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block">
-                <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block">  
-                <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="mt-3 ml-3.5 size-12 inline-block">
-            </span>
-            <a href="index.html" class="outline-none"><h1 class="m-3.5 whitespace-nowrap overflow-hidden text-3xl opacity-0 group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
+    <header class="group fixed top-0 left-0 lg:pt-10 lg:pb-10 max-lg:px-5 lg:w-20 w-full lg:hover:w-60 lg:duration-500 lg:ease-out lg:h-screen max-lg:h-15 flex lg:flex-col justify-between bg-ash/85 backdrop-blur-md shadow-[var(--around-shadow-md)] select-none text-off-white z-10">
+        <div class="w-full lg:h-35 max-lg:flex max-lg:items-center max-lg:gap-2.5">
+            <img src="resources/umak.svg" alt="UMak Logo" class="mt-3 ml-3.5 size-12 inline-block max-lg:hidden">
+            <img src="resources/ccis.svg" alt="CCIS Logo" class="mt-3 ml-3.5 size-12 inline-block max-lg:hidden">  
+            <img src="resources/sf-logo.svg" alt="Scholar Finds Logo" class="lg:mt-3 lg:ml-3.5 size-12 max-lg:size-8 inline-block">
+            <a href="index.html" class="outline-none"><h1 class="lg:m-3.5 whitespace-nowrap overflow-hidden text-3xl max-lg:text-xl lg:opacity-0 lg:group-hover:opacity-100 duration-500 font-semibold">Scholar Finds</h1></a>
         </div>
-        <nav>
+        <nav class="hidden max-lg:flex items-center">
+            <input type="checkbox" hidden id="menu" class="peer">
+            <label for="menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#eeeeee" class="p-1.5 size-10 cursor-pointer">
+                    <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+                </svg>
+            </label>
+            <label for="menu" class="fixed top-0 left-0 w-screen h-screen hidden peer-checked:block"></label>
+            <ul class="absolute top-20 right-5 py-5 w-40 rounded-lg bg-ash/90 backdrop-blur-md text-center leading-8 *:hover:bg-zinc-700 *:duration-200 animate-fadeIn hidden peer-checked:block">
+                <li><a href="index.html" class="block w-full">Home</a></li>
+                <li><a href="about.html" class="block w-full">About</a></li>
+                <li><a href="contact.html" class="block w-full">Contact</a></li>
+                <hr class="my-2.5 opacity-30">
+                <li><a href="library.php" class="block w-full">Library</a></li>
+                <li><a href="bookmarks.html" class="block w-full">Bookmarks</a></li>
+                <li><a href="profile.php" class="block w-full">Profile</a></li>
+                <li><a href="admin.php" class="block w-full">Admin</a></li>
+            </ul>
+        </nav>
+        <nav class="max-lg:hidden">
             <ul class="flex flex-col gap-2">
                 <li><a href="index.html" class="flex items-center gap-8 pl-5 py-2 hover:opacity-60 duration-200 ease-linear">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="min-w-8 w-8">
@@ -60,7 +77,7 @@ session_start();
                 </a></li>
             </ul>
         </nav>
-        <menu class="flex flex-col gap-2">
+        <menu class="flex flex-col gap-2 max-lg:hidden">
             <li><a href="bookmarks.html" class="flex items-center gap-8 pl-5 py-2 hover:opacity-60 duration-200 ease-linear">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="min-w-8 w-8">
                     <path fill-rule="evenodd" d="M7.502 6h7.128A3.375 3.375 0 0 1 18 9.375v9.375a3 3 0 0 0 3-3V6.108c0-1.505-1.125-2.811-2.664-2.94a48.972 48.972 0 0 0-.673-.05A3 3 0 0 0 15 1.5h-1.5a3 3 0 0 0-2.663 1.618c-.225.015-.45.032-.673.05C8.662 3.295 7.554 4.542 7.502 6ZM13.5 3A1.5 1.5 0 0 0 12 4.5h4.5A1.5 1.5 0 0 0 15 3h-1.5Z" clip-rule="evenodd" />
@@ -88,7 +105,7 @@ session_start();
             const admin = document.querySelector('a[href="admin.php"]');
             const role = document.cookie.match(/role=([^;]+)/)?.[1];
             if (!role || role === "regular") admin?.classList.add("hidden");
-        </script>   
+        </script> 
     </header>
     <main>
         <?php
@@ -98,7 +115,7 @@ session_start();
             }
             session_unset();
         ?>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] flex-col justify-between animate-fadeIn" id="fpwdiv">
+        <div class="max-sm:scale-75 max-lg:scale-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-10 w-110 h-140 rounded-3xl bg-[#060d0d79] backdrop-blur-lg shadow-[var(--around-shadow-md)] flex-col justify-between animate-fadeIn" id="fpwdiv">
             <a class="absolute top-5 right-5 cursor-pointer" href="access.php">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
             </a>
@@ -111,7 +128,8 @@ session_start();
                 </span>
                 <div class="py-5 flex flex-col items-center select-none" >
                     <div id="captcha2" class="g-recaptcha scale-70" data-sitekey="6LfGZvUqAAAAAC3HdNLI0eRuIaaZR-PSpXrD6GRK"></div>
-                    <input type="submit" name="fpw" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95">
+                    <i class="pb-2">You will receive an OTP via email for verification.</i>
+                    <input type="submit" name="fpw" class="py-1 w-30 rounded-lg bg-green-900 text-sm cursor-pointer hover:opacity-80 active:scale-95" value="Send OTPm">
                 </div>
             </form>
         </div>

@@ -8,7 +8,7 @@
     require_once 'config.php';
 
     // Fetch theses data
-    $theses_sql = "SELECT thesis_id, archived, published_date, course, title, authors, abstract, keywords FROM theses";
+    $theses_sql = "SELECT thesis_id, archived, published_date, course, category, title, authors, abstract, keywords FROM theses";
     $theses_result = $conn->query($theses_sql);
     $theses = [];
     $accounts_sql = "SELECT user_id, archived, role, username, name, email, password, personalization FROM accounts";

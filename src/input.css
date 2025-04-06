@@ -1,21 +1,49 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
-
 @theme {
-    --font-lexend: 'Lexend', sans-serif;
     --font-nunito: 'Nunito', sans-serif;
     --color-off-white: #eeeeee;
     --color-dirty-brown: #585345;
-    --color-dgreen: #01402F;
-    --color-lgreen: #bfcdb2;
+    --color-dgreen: #587042;
+    --color-lgreen: #A9B494;
     --color-slgreen: #ebece5;
     --color-lred: #e49295;
+    --color-yellow: #F6C531;
     --color-disabled: #757672;
-    --around-shadow-md:  0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+    --color-ash: #060d0d;
+    --around-shadow-sm:  0px 0px 30px 10px rgba(0, 0, 0, 0.2);
+    --around-shadow-md:  0px 0px 20px 10px rgba(0, 0, 0, 0.4);
+    --animate-header: header .5s ease-in-out;
+    --animate-header-close: header-close .5s ease-in-out;
     --animate-downfadeinout: downFadeInOut 3s ease-in-out forwards;
     --animate-fadeIn: fadeIn .5s ease-in-out;
+    --animate-blur-up: blur-up 1s ease-in-out;
+    --animate-blur-left: blur-left 1s ease-in-out;
+    --animate-blur-right: blur-right 1s ease-in-out;
+    --breakpoint-phone: 450px;
+    --breakpoint-big-phone: 700px;
+    --breakpoint-tablet: 1200px;
+
+
+    @keyframes header {
+        0% {
+            transform: translateX(280px);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes header-close {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(280px);
+        }
+    }
+
 
     @keyframes downFadeInOut {
         0% {
@@ -44,8 +72,66 @@
             opacity: 1;
         }
     }
+
+    @keyframes blur-up {
+        0% {
+            filter: blur(2px);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100 {
+            filter: blur(0px);
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes blur-left {
+        0% {
+            filter: blur(2px);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        100% {
+            filter: blur(0px);
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes blur-right {
+        0% {
+            filter: blur(2px);
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        100% {
+            filter: blur(0px);
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 }
 
 img {
     -webkit-user-drag: none;
+}
+
+.text-shadow {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+div::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+div::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: #9F9F9F;
+    border-radius: 10px;
+    cursor: context-menu;
 }

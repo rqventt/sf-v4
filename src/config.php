@@ -8,7 +8,7 @@ $host = "localhost";
 $username = "root";
 $password = "";
 $database = "scholarfindsdb";
-$port = "3307";
+$port = "3306";
 
 $conn = new mysqli($host, $username, $password, $database, $port);
 
